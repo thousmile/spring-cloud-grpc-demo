@@ -1,0 +1,15 @@
+### hello
+GET {{baseUrl}}/hello?name=tom
+Content-Type: application/json
+
+
+### howdy
+GET {{baseUrl}}/howdy?name=alice
+Content-Type: application/json
+
+
+### isChinese
+GET {{baseUrl}}/isChinese?name=jack
+Content-Type: application/json
+
+
