@@ -8,13 +8,11 @@ import com.google.protobuf.util.JsonFormat;
 import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.dto.CustomMetadata;
-import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.MsgpackUtils;
 import io.grpc.*;
 import io.grpc.protobuf.ProtoUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.interceptor.GrpcGlobalClientInterceptor;
-import net.devh.boot.grpc.server.error.GrpcExceptionListener;
 import net.devh.boot.grpc.server.interceptor.GrpcGlobalServerInterceptor;
 import org.springframework.util.StringUtils;
 
@@ -39,6 +37,13 @@ public class TokenInterceptor {
     // token 信息 二进制 格式 , name 后缀必须是 -bin
     private static final Metadata.Key<byte[]> TOKEN_INFO_BYTES = Metadata.Key.of("customMetadata" + BINARY_HEADER_SUFFIX, BINARY_BYTE_MARSHALLER);
 
+
+    /**
+     * TODO 服务端 token拦截器
+     *
+     * @author WangChenChen
+     * @date 2022/11/13 12:53
+     */
     @Slf4j
     @GrpcGlobalServerInterceptor
     public static class TokenServerInterceptor implements ServerInterceptor {
@@ -47,9 +52,9 @@ public class TokenInterceptor {
         public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call,
                                                                      Metadata headers,
                                                                      ServerCallHandler<ReqT, RespT> next) {
+            GrpcContext.reset();
             String fullMethodName = call.getMethodDescriptor().getFullMethodName();
-            log.info("grpc request address : {}", fullMethodName);
-
+            // log.info("grpc request address : {}", fullMethodName);
             // 获取 租户ID
             var tenantId = headers.get(TENANT_ID);
             if (!StringUtils.hasText(tenantId)) {
@@ -59,7 +64,7 @@ public class TokenInterceptor {
                 GrpcContext.setTenantId(tenantId);
             }
 
-            log.info("TenantId: String \n{}", GrpcContext.getTenantId());
+            log.info("3.Server TenantId: String \n{}", GrpcContext.getTenantId());
 
 
             // 获取 token 信息 protobuf 格式
@@ -71,11 +76,11 @@ public class TokenInterceptor {
                 GrpcContext.setTokenInfo(tokenInfo);
             }
 
-            log.info("TokenInfo Protobuf : \n{}", GrpcContext.getTokenInfo());
+            // log.info("TokenInfo Protobuf : \n{}", GrpcContext.getTokenInfo());
 
             try {
                 String print = JsonFormat.printer().print(GrpcContext.getTokenInfo());
-                log.info("TokenInfo Json : \n{}", print);
+                // log.info("TokenInfo Json : \n{}", print);
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
             }
@@ -85,9 +90,8 @@ public class TokenInterceptor {
             var bytes = headers.get(TOKEN_INFO_BYTES);
             if (ArrayUtil.isNotEmpty(bytes)) {
                 var customMetadata = MsgpackUtils.toPojo(bytes, CustomMetadata.class);
-                log.info("CustomMetadata: \n{}", JsonUtils.toFormatJson(customMetadata));
+                // log.info("CustomMetadata: \n{}", JsonUtils.toFormatJson(customMetadata));
             }
-
 
             try {
                 var delegate = next.startCall(call, headers);
@@ -111,6 +115,13 @@ public class TokenInterceptor {
                         }
                     }
 
+                    @Override
+                    public void onComplete() {
+                        super.onComplete();
+                        // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
+                        GrpcContext.reset();
+                    }
+
                 };
             } catch (Exception ex) {
                 return handleInterceptorException(
@@ -126,18 +137,34 @@ public class TokenInterceptor {
             serverCall.close(Status.INTERNAL
                     .withCause(t)
                     .withDescription(t.getMessage()), new Metadata());
+            // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
+            GrpcContext.reset();
         }
 
 
         private <ReqT, RespT> ServerCall.Listener<ReqT> handleInterceptorException(Status status, ServerCall<ReqT, RespT> serverCall) {
             serverCall.close(status, new Metadata());
             return new ServerCall.Listener<ReqT>() {
+
+                @Override
+                public void onComplete() {
+                    // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
+                    GrpcContext.reset();
+                    super.onComplete();
+                }
+
             };
         }
 
     }
 
 
+    /**
+     * TODO 客户端 token拦截器
+     *
+     * @author WangChenChen
+     * @date 2022/11/13 12:53
+     */
     @Slf4j
     @GrpcGlobalClientInterceptor
     public static class TokenClientInterceptor implements ClientInterceptor {
@@ -146,46 +173,69 @@ public class TokenInterceptor {
         public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor,
                                                                    CallOptions callOptions,
                                                                    Channel channel) {
-            return new ForwardingClientCall.SimpleForwardingClientCall<>(channel.newCall(methodDescriptor, callOptions)) {
+            var delegate = channel.newCall(methodDescriptor, callOptions);
+            return new ForwardingClientCall.SimpleForwardingClientCall<>(delegate) {
 
                 @Override
                 public void start(Listener<RespT> responseListener, Metadata headers) {
-                    if (StringUtils.hasText(GrpcContext.getTenantId())) {
-                        // 添加租户ID
-                        headers.put(TENANT_ID, GrpcContext.getTenantId());
+                    var tenantId = GrpcContext.getTenantId();
+                    var tokenInfo = GrpcContext.getTokenInfo();
+                    log.info("2.Client TenantId: String \n{}", tenantId);
+                    if (StringUtils.hasText(tenantId)) {
+                        // 添加 租户ID string 类型
+                        headers.put(TENANT_ID, tenantId);
                     }
-                    if (Objects.nonNull(GrpcContext.getTokenInfo())) {
+
+                    if (Objects.nonNull(tokenInfo)) {
                         // 添加 token 信息 protobuf 格式
-                        headers.put(TOKEN_INFO, GrpcContext.getTokenInfo());
+                        headers.put(TOKEN_INFO, tokenInfo);
                     }
 
-                    var customMetadata = CustomMetadata.builder()
-                            .id(IdUtil.nanoId())
-                            .size(RandomUtil.randomInt())
-                            .date(LocalDate.now())
-                            .time(LocalTime.now())
-                            .dateTime(LocalDateTime.now())
-                            .d1(RandomUtil.randomDouble())
-                            .list(RandomUtil.randomEleList(List.of("A", "B", "C", "D", "E", "F", "G"), 3))
-                            .maps(
-                                    Map.of(
-                                            "age", RandomUtil.randomInt(),
-                                            "id", IdUtil.objectId(),
-                                            "msg", RandomUtil.randomDouble()
-                                    )
-                            )
-                            .build();
+                    // 添加 元数据 二进制 格式
+                    headers.put(TOKEN_INFO_BYTES, randomBytes());
 
-                    byte[] bytes = MsgpackUtils.toBytes(customMetadata);
+                    super.start(new ForwardingClientCallListener.SimpleForwardingClientCallListener<RespT>(responseListener) {
 
-                    // 添加 token 信息 二进制 格式
-                    headers.put(TOKEN_INFO_BYTES, bytes);
+                        @Override
+                        public void onClose(Status status, Metadata trailers) {
+                            log.info("4.onClose: \n{}", GrpcContext.getTenantId());
+                            // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
+                            GrpcContext.reset();
+                            super.onClose(status, trailers);
+                        }
 
-                    super.start(responseListener, headers);
+                    }, headers);
                 }
 
             };
 
+        }
+
+
+        /**
+         * TODO 随机生成 类。并且转换为 字节数组
+         *
+         * @author WangChenChen
+         * @date 2022/11/13 11:52
+         */
+        private static byte[] randomBytes() {
+            var customMetadata = CustomMetadata.builder()
+                    .id(IdUtil.nanoId())
+                    .size(RandomUtil.randomInt())
+                    .date(LocalDate.now())
+                    .time(LocalTime.now())
+                    .dateTime(LocalDateTime.now())
+                    .d1(RandomUtil.randomDouble())
+                    .list(RandomUtil.randomEleList(List.of("A", "B", "C", "D", "E", "F", "G"), 3))
+                    .maps(
+                            Map.of(
+                                    "age", RandomUtil.randomInt(),
+                                    "id", IdUtil.objectId(),
+                                    "msg", RandomUtil.randomDouble()
+                            )
+                    )
+                    .build();
+            return MsgpackUtils.toBytes(customMetadata);
         }
 
     }

@@ -10,26 +10,28 @@ import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.domain.ClientInfo;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.domain.UserInfo;
+import com.xaaef.grpc.lib.rpc.RpcGreeterService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Map;
 
+
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class GrpcClientController {
 
-    private final GrpcClientService clientService;
+    private final RpcGreeterService greeterService;
 
     private void initToken() {
         GrpcContext.setTenantId(IdUtil.objectId());
-
         GrpcContext.setTokenInfo(
                 TokenInfo.newBuilder()
                         .setTokenId(IdUtil.objectId())
@@ -57,29 +59,31 @@ public class GrpcClientController {
 
 
     @GetMapping("hello")
-    public Map<String, Object> hello(@RequestParam String name) {
+    public Object hello(@RequestParam String name) {
         initToken();
-        return Map.of(
-                "msg", clientService.sayHello(name),
+        log.info("1.hello TenantId: \n{}", GrpcContext.getTenantId());
+        var ob= Map.of(
+                "msg", greeterService.sayHello(name),
                 "date", LocalDate.now(),
                 "time", LocalTime.now(),
                 "dateTime", LocalDateTime.now()
         );
+        log.info("5.hello TenantId: \n{}", GrpcContext.getTenantId());
+        return ob;
     }
 
 
     @GetMapping("isChinese")
     public String isChinese(@RequestParam String name) {
         initToken();
-        return StrUtil.format("{} ===> {}", name, clientService.isChinese(name));
+        return StrUtil.format("{} ===> {}", name, greeterService.isChinese(name));
     }
 
 
     @GetMapping("howdy")
     public String howdy(@RequestParam String name) {
-        GrpcContext.setTenantId(null);
-        GrpcContext.setTokenInfo(null);
-        return clientService.sayHello(name);
+        log.info("1.howdy TenantId: \n{}", GrpcContext.getTenantId());
+        return greeterService.sayHello(name);
     }
 
 

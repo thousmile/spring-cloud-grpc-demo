@@ -1,19 +1,16 @@
 package com.xaaef.grpc.server.rpc;
 
+import cn.hutool.core.util.StrUtil;
 import com.google.protobuf.BoolValue;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.StringValue;
-import com.google.protobuf.util.JsonFormat;
-import com.xaaef.grpc.lib.context.GrpcContext;
-import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.greet.GreeterGrpc;
 import com.xaaef.grpc.lib.greet.HelloReply;
 import com.xaaef.grpc.lib.greet.HelloRequest;
-import com.xaaef.grpc.lib.util.ProtobufUtils;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.springframework.core.env.Environment;
 
 import java.util.UUID;
 
@@ -33,10 +30,18 @@ import java.util.UUID;
 @AllArgsConstructor
 public class GreeterGrpcImpl extends GreeterGrpc.GreeterImplBase {
 
+    private final Environment env;
 
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-        var msg = String.format("Hello grpc-server 1 ==> %s  ==> %s ", request.getName(), UUID.randomUUID());
+        /**
+         * 通过 GrpcContext 获取 客户端传递的公共参数。
+         * var tenantId = GrpcContext.getTenantId();
+         * var tokenInfo = GrpcContext.getTokenInfo();
+         */
+        String port = env.getProperty("server.port");
+        var msg = StrUtil.format("Hello grpc-server [{}] ==> {} ==> {}", port, request.getName(), UUID.randomUUID());
+        log.info("reply: {}", msg);
         var reply = HelloReply.newBuilder().setMessage(msg).build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
