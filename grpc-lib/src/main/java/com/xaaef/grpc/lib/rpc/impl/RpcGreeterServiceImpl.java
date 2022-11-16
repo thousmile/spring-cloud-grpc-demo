@@ -46,7 +46,7 @@ public class RpcGreeterServiceImpl implements RpcGreeterService {
                     return err;
                 });
         long time = System.currentTimeMillis() - start;
-        log.debug("[grpc] blockingStub.sayHello() 耗时: {} ms", time);
+        log.info("[grpc] blockingStub.sayHello() 耗时: {} ms", time);
         return result;
     }
 
