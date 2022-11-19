@@ -8,8 +8,8 @@ GET {{baseUrl}}/howdy?name=alice
 Content-Type: application/json
 
 
-### isChinese
-GET {{baseUrl}}/isChinese?name=jack
+### getUserInfo
+GET {{baseUrl}}/getUserInfo?name=jack
 Content-Type: application/json
 
 

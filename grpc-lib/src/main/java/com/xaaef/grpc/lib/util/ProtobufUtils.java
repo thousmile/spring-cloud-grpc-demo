@@ -1,5 +1,6 @@
 package com.xaaef.grpc.lib.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
@@ -10,6 +11,9 @@ import com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchema;
 import com.fasterxml.jackson.dataformat.protobuf.schemagen.ProtobufSchemaGenerator;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.MessageOrBuilder;
+import com.google.protobuf.util.JsonFormat;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +39,8 @@ public class ProtobufUtils {
 
     private static final ProtobufMapper MAPPER = new ProtobufMapper();
 
+    private static final JsonFormat.Printer JSON_PRINTER = JsonFormat.printer();
+
     static {
         MAPPER.registerModules(new Jdk8Module(), new JavaTimeModule())
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true)
@@ -43,8 +49,19 @@ public class ProtobufUtils {
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
+
     public static ProtobufMapper getMapper() {
         return MAPPER;
+    }
+
+
+    public static String toJson(MessageOrBuilder message) {
+        try {
+            return JSON_PRINTER.print(message);
+        } catch (InvalidProtocolBufferException e) {
+            log.error(e.getMessage());
+        }
+        return StrUtil.EMPTY;
     }
 
 

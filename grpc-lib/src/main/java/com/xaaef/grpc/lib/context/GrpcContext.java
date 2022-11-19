@@ -1,18 +1,17 @@
 package com.xaaef.grpc.lib.context;
 
-import com.alibaba.ttl.TransmittableThreadLocal;
 import com.xaaef.grpc.lib.domain.TokenInfo;
+import org.springframework.core.NamedInheritableThreadLocal;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
 
-
 public class GrpcContext {
 
-    private static final TransmittableThreadLocal<String> TENANT_ID = new TransmittableThreadLocal<>();
+    private static final NamedInheritableThreadLocal<String> TENANT_ID = new NamedInheritableThreadLocal<>("TENANT_ID");
 
-    private static final TransmittableThreadLocal<TokenInfo> TOKEN_INFO = new TransmittableThreadLocal<>();
+    private static final NamedInheritableThreadLocal<TokenInfo> TOKEN_INFO = new NamedInheritableThreadLocal<>("TENANT_ID");
 
 
     public static void setTenantId(String tenantId) {

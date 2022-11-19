@@ -11,6 +11,8 @@ import com.xaaef.grpc.lib.domain.ClientInfo;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.domain.UserInfo;
 import com.xaaef.grpc.lib.rpc.RpcGreeterService;
+import com.xaaef.grpc.lib.util.JsonUtils;
+import com.xaaef.grpc.lib.util.ProtobufUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +33,7 @@ public class GrpcClientController {
     private final RpcGreeterService greeterService;
 
     private void initToken() {
-
-
-
+        GrpcContext.setTenantId(IdUtil.simpleUUID());
         GrpcContext.setTokenInfo(
                 TokenInfo.newBuilder()
                         .setTokenId(IdUtil.objectId())
@@ -64,21 +64,17 @@ public class GrpcClientController {
     public Object hello(@RequestParam String name) {
         initToken();
         log.info("1.hello TenantId: \n{}", GrpcContext.getTenantId());
-        var ob = Map.of(
-                "msg", greeterService.sayHello(name),
-                "date", LocalDate.now(),
-                "time", LocalTime.now(),
-                "dateTime", LocalDateTime.now()
-        );
+        var result = greeterService.sayHello(name);
         log.info("5.hello TenantId: \n{}", GrpcContext.getTenantId());
-        return ob;
+        return result;
     }
 
 
-    @GetMapping("isChinese")
-    public String isChinese(@RequestParam String name) {
+    @GetMapping("getUserInfo")
+    public Map<String, Object> getUserInfo(@RequestParam String name) {
         initToken();
-        return StrUtil.format("{} ===> {}", name, greeterService.isChinese(name));
+        var userInfo = greeterService.getUserInfo(name);
+        return JsonUtils.toMap(ProtobufUtils.toJson(userInfo), String.class, Object.class);
     }
 
 

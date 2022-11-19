@@ -3,6 +3,7 @@ package com.xaaef.grpc.server2.rpc;
 import cn.hutool.core.util.StrUtil;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.StringValue;
+import com.xaaef.grpc.lib.domain.UserInfo;
 import com.xaaef.grpc.lib.greet.GreeterGrpc;
 import com.xaaef.grpc.lib.greet.HelloReply;
 import com.xaaef.grpc.lib.greet.HelloRequest;
@@ -50,7 +51,7 @@ public class GreeterGrpcImpl extends GreeterGrpc.GreeterImplBase {
 
 
     @Override
-    public void isChinese(StringValue request, StreamObserver<BoolValue> responseObserver) {
+    public void getUserInfo(StringValue request, StreamObserver<UserInfo> responseObserver) {
         throw new RuntimeException("自定义异常啊！！！");
     }
 

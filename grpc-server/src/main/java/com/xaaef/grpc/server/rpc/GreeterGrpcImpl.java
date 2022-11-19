@@ -1,8 +1,11 @@
 package com.xaaef.grpc.server.rpc;
 
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.StringValue;
+import com.google.protobuf.util.Timestamps;
+import com.xaaef.grpc.lib.domain.UserInfo;
 import com.xaaef.grpc.lib.greet.GreeterGrpc;
 import com.xaaef.grpc.lib.greet.HelloReply;
 import com.xaaef.grpc.lib.greet.HelloRequest;
@@ -49,8 +52,23 @@ public class GreeterGrpcImpl extends GreeterGrpc.GreeterImplBase {
 
 
     @Override
-    public void isChinese(StringValue request, StreamObserver<BoolValue> responseObserver) {
-        var reply = BoolValue.of(true);
+    public void getUserInfo(StringValue request, StreamObserver<UserInfo> responseObserver) {
+        var reply = UserInfo.newBuilder()
+                .setUserId(RandomUtil.randomLong())
+                .setTenantId(RandomUtil.randomString(32))
+                .setAvatar(RandomUtil.randomString(64))
+                .setUsername(request.getValue())
+                .setMobile(RandomUtil.randomString(11))
+                .setEmail(RandomUtil.randomString(18))
+                .setNickname(RandomUtil.randomString(10))
+                .setPassword(RandomUtil.randomString(64))
+                .setGender(RandomUtil.randomInt())
+                .setUserType(RandomUtil.randomInt())
+                .setDeptId(RandomUtil.randomInt())
+                .setStatus(RandomUtil.randomInt())
+                .setAdminFlag(RandomUtil.randomInt())
+                .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
+                .build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }

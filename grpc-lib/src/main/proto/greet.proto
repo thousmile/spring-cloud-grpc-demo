@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import public "google/protobuf/timestamp.proto";
 import public "google/protobuf/wrappers.proto";
+import public "domain.proto";
 
 package greet;
 
@@ -23,17 +24,20 @@ service Greeter {
 
 
   // Sends a greeting
-  rpc isChinese (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
+  rpc GetUserInfo (google.protobuf.StringValue) returns (UserInfo);
 
 
 }
+
 
 // The request message containing the user's name.
 message HelloRequest {
   string name = 1;
 }
 
+
 // The response message containing the greetings.
 message HelloReply {
   string message = 1;
 }
+

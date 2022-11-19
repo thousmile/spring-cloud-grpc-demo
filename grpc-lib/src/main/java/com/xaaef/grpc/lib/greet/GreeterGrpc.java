@@ -50,34 +50,34 @@ public final class GreeterGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
-      com.google.protobuf.BoolValue> getIsChineseMethod;
+      com.xaaef.grpc.lib.domain.UserInfo> getGetUserInfoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "isChinese",
+      fullMethodName = SERVICE_NAME + '/' + "GetUserInfo",
       requestType = com.google.protobuf.StringValue.class,
-      responseType = com.google.protobuf.BoolValue.class,
+      responseType = com.xaaef.grpc.lib.domain.UserInfo.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
-      com.google.protobuf.BoolValue> getIsChineseMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.google.protobuf.BoolValue> getIsChineseMethod;
-    if ((getIsChineseMethod = GreeterGrpc.getIsChineseMethod) == null) {
+      com.xaaef.grpc.lib.domain.UserInfo> getGetUserInfoMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.xaaef.grpc.lib.domain.UserInfo> getGetUserInfoMethod;
+    if ((getGetUserInfoMethod = GreeterGrpc.getGetUserInfoMethod) == null) {
       synchronized (GreeterGrpc.class) {
-        if ((getIsChineseMethod = GreeterGrpc.getIsChineseMethod) == null) {
-          GreeterGrpc.getIsChineseMethod = getIsChineseMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.google.protobuf.BoolValue>newBuilder()
+        if ((getGetUserInfoMethod = GreeterGrpc.getGetUserInfoMethod) == null) {
+          GreeterGrpc.getGetUserInfoMethod = getGetUserInfoMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.xaaef.grpc.lib.domain.UserInfo>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "isChinese"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetUserInfo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.StringValue.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.BoolValue.getDefaultInstance()))
-              .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("isChinese"))
+                  com.xaaef.grpc.lib.domain.UserInfo.getDefaultInstance()))
+              .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("GetUserInfo"))
               .build();
         }
       }
     }
-    return getIsChineseMethod;
+    return getGetUserInfoMethod;
   }
 
   /**
@@ -146,9 +146,9 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public void isChinese(com.google.protobuf.StringValue request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIsChineseMethod(), responseObserver);
+    public void getUserInfo(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetUserInfoMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -161,12 +161,12 @@ public final class GreeterGrpc {
                 com.xaaef.grpc.lib.greet.HelloReply>(
                   this, METHODID_SAY_HELLO)))
           .addMethod(
-            getIsChineseMethod(),
+            getGetUserInfoMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 com.google.protobuf.StringValue,
-                com.google.protobuf.BoolValue>(
-                  this, METHODID_IS_CHINESE)))
+                com.xaaef.grpc.lib.domain.UserInfo>(
+                  this, METHODID_GET_USER_INFO)))
           .build();
     }
   }
@@ -204,10 +204,10 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public void isChinese(com.google.protobuf.StringValue request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
+    public void getUserInfo(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getIsChineseMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetUserInfoMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -243,9 +243,9 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.google.protobuf.BoolValue isChinese(com.google.protobuf.StringValue request) {
+    public com.xaaef.grpc.lib.domain.UserInfo getUserInfo(com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getIsChineseMethod(), getCallOptions(), request);
+          getChannel(), getGetUserInfoMethod(), getCallOptions(), request);
     }
   }
 
@@ -282,15 +282,15 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.BoolValue> isChinese(
+    public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.domain.UserInfo> getUserInfo(
         com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getIsChineseMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetUserInfoMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_SAY_HELLO = 0;
-  private static final int METHODID_IS_CHINESE = 1;
+  private static final int METHODID_GET_USER_INFO = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -313,9 +313,9 @@ public final class GreeterGrpc {
           serviceImpl.sayHello((com.xaaef.grpc.lib.greet.HelloRequest) request,
               (io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.greet.HelloReply>) responseObserver);
           break;
-        case METHODID_IS_CHINESE:
-          serviceImpl.isChinese((com.google.protobuf.StringValue) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue>) responseObserver);
+        case METHODID_GET_USER_INFO:
+          serviceImpl.getUserInfo((com.google.protobuf.StringValue) request,
+              (io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -379,7 +379,7 @@ public final class GreeterGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new GreeterFileDescriptorSupplier())
               .addMethod(getSayHelloMethod())
-              .addMethod(getIsChineseMethod())
+              .addMethod(getGetUserInfoMethod())
               .build();
         }
       }
