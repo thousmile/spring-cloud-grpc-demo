@@ -2,13 +2,12 @@ package com.xaaef.grpc.lib.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.protobuf.ProtobufFactory;
 import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
 import com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchema;
+import com.fasterxml.jackson.dataformat.protobuf.schemagen.ProtobufSchemaGenerator;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.xaaef.grpc.lib.domain.TokenInfo;
@@ -46,6 +45,38 @@ public class ProtobufUtils {
 
     public static ProtobufMapper getMapper() {
         return MAPPER;
+    }
+
+
+    /**
+     * 将 对象 转换成 二进制
+     */
+    public static byte[] toBytes(Object data) {
+        try {
+            var gen = new ProtobufSchemaGenerator();
+            MAPPER.acceptJsonFormatVisitor(data.getClass(), gen);
+            var schema = gen.getGeneratedSchema();
+            return MAPPER.writer(schema).writeValueAsBytes(data);
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+        }
+        return new byte[0];
+    }
+
+
+    /**
+     * 将 二进制 结果集转化为对象
+     */
+    public static <T> T toPojo(byte[] data, Class<T> beanType) {
+        try {
+            var gen = new ProtobufSchemaGenerator();
+            MAPPER.acceptJsonFormatVisitor(beanType, gen);
+            var schema = gen.getGeneratedSchema();
+            return MAPPER.readerFor(beanType).with(schema).readValue(data);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return null;
     }
 
 

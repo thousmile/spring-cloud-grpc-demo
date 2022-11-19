@@ -2,10 +2,6 @@ package com.xaaef.grpc.lib;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
-import com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchema;
 import com.fasterxml.jackson.dataformat.protobuf.schemagen.ProtobufSchemaGenerator;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Timestamp;
@@ -15,16 +11,17 @@ import com.xaaef.grpc.lib.domain.ClientInfo;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.domain.UserInfo;
 import com.xaaef.grpc.lib.util.JsonUtils;
-import com.xaaef.grpc.lib.util.MsgpackUtils;
 import lombok.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
+
+import static com.xaaef.grpc.lib.util.ProtobufUtils.toBytes;
+import static com.xaaef.grpc.lib.util.ProtobufUtils.toPojo;
+
 
 public class NoSpring {
 
@@ -66,14 +63,8 @@ public class NoSpring {
     }
 
 
-    public final static ProtobufMapper MAPPER = new ProtobufMapper();
-
     @Test
     public void test2() throws IOException {
-        var gen = new ProtobufSchemaGenerator();
-        MAPPER.acceptJsonFormatVisitor(Employee.class, gen);
-        var schema = gen.getGeneratedSchema();
-
         var arr = List.of("A", "B", "C", "D", "E", "F", "G", "H", "Q", "W", "Y", "U", "I");
 
         var empl = Employee.builder()
@@ -111,7 +102,7 @@ public class NoSpring {
         System.out.println(JsonUtils.toFormatJson(empl));
 
         long start1 = System.currentTimeMillis();
-        var protobufData = MAPPER.writer(schema).writeValueAsBytes(empl);
+        var protobufData = toBytes(empl);
         long end1 = System.currentTimeMillis() - start1;
         System.out.printf("Writer Protobuf: %d  --->  %d ms%n", protobufData.length, end1);
 
@@ -119,9 +110,7 @@ public class NoSpring {
         System.out.println();
 
         long start2 = System.currentTimeMillis();
-        var empl2 = MAPPER.readerFor(Employee.class)
-                .with(schema)
-                .readValue(protobufData);
+        var empl2 = toPojo(protobufData, Employee.class);
         long end2 = System.currentTimeMillis() - start2;
         System.out.printf("ReaderFor Object:  --->  %d ms%n", end2);
 
@@ -201,9 +190,6 @@ public class NoSpring {
 
     @Test
     public void test4() throws Exception {
-        var gen = new ProtobufSchemaGenerator();
-        MAPPER.acceptJsonFormatVisitor(TokenValue.class, gen);
-        var schema = gen.getGeneratedSchema();
 
         var arr = List.of("A", "B", "C", "D", "E", "F", "G", "H", "Q", "W", "Y", "U", "I");
 
@@ -249,7 +235,7 @@ public class NoSpring {
 
 
         long start1 = System.currentTimeMillis();
-        var protobufData = MAPPER.writer(schema).writeValueAsBytes(empl);
+        var protobufData = toBytes(empl);
         long end1 = System.currentTimeMillis() - start1;
         System.out.printf("Writer Protobuf: %d  --->  %d ms%n", protobufData.length, end1);
 
@@ -258,9 +244,7 @@ public class NoSpring {
 
         long start2 = System.currentTimeMillis();
 
-        var empl2 = MAPPER.readerFor(TokenValue.class)
-                .with(schema)
-                .readValue(protobufData, TokenValue.class);
+        var empl2 = toPojo(protobufData, TokenValue.class);
 
         long end2 = System.currentTimeMillis() - start2;
         System.out.printf("ReaderFor Object:  --->  %d ms%n", end2);
@@ -268,5 +252,6 @@ public class NoSpring {
         System.out.println(JsonUtils.toFormatJson(empl2));
 
     }
+
 
 }

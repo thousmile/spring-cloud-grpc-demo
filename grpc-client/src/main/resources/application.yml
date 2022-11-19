@@ -1,11 +1,12 @@
 server:
-  port: 18189
+  port: 18030
 
 spring:
   application:
     name: grpc-client
   profiles:
     include: resilience4j
+
 
   cloud:
     consul:
@@ -14,13 +15,17 @@ spring:
       discovery:
         prefer-ip-address: true
 
+
 # Grpc配置
 grpc:
+  server:
+    port: 18031
   client:
     GLOBAL:
       negotiation-type: plaintext
       enable-keep-alive: true
       keep-alive-without-calls: true
+
 
 info:
   app:

@@ -8,6 +8,7 @@ import com.google.protobuf.util.JsonFormat;
 import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.dto.CustomMetadata;
+import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.MsgpackUtils;
 import io.grpc.*;
 import io.grpc.protobuf.ProtoUtils;
@@ -54,7 +55,8 @@ public class TokenInterceptor {
                                                                      ServerCallHandler<ReqT, RespT> next) {
             GrpcContext.reset();
             String fullMethodName = call.getMethodDescriptor().getFullMethodName();
-            // log.info("grpc request address : {}", fullMethodName);
+            log.debug("grpc request address : {}", fullMethodName);
+
             // 获取 租户ID
             var tenantId = headers.get(TENANT_ID);
             if (!StringUtils.hasText(tenantId)) {
@@ -64,8 +66,7 @@ public class TokenInterceptor {
                 GrpcContext.setTenantId(tenantId);
             }
 
-            log.info("3.Server TenantId: String \n{}", GrpcContext.getTenantId());
-
+            log.info("3.Server TenantId: \n{}", GrpcContext.getTenantId());
 
             // 获取 token 信息 protobuf 格式
             var tokenInfo = headers.get(TOKEN_INFO);
@@ -76,21 +77,20 @@ public class TokenInterceptor {
                 GrpcContext.setTokenInfo(tokenInfo);
             }
 
-            // log.info("TokenInfo Protobuf : \n{}", GrpcContext.getTokenInfo());
+            log.debug("TokenInfo Protobuf : \n{}", GrpcContext.getTokenInfo());
 
             try {
                 String print = JsonFormat.printer().print(GrpcContext.getTokenInfo());
-                // log.info("TokenInfo Json : \n{}", print);
+                log.debug("TokenInfo Json : \n{}", print);
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
             }
-
 
             // 获取 token 信息 二进制 格式
             var bytes = headers.get(TOKEN_INFO_BYTES);
             if (ArrayUtil.isNotEmpty(bytes)) {
                 var customMetadata = MsgpackUtils.toPojo(bytes, CustomMetadata.class);
-                // log.info("CustomMetadata: \n{}", JsonUtils.toFormatJson(customMetadata));
+                log.debug("Custom Metadata: \n{}", JsonUtils.toFormatJson(customMetadata));
             }
 
             try {
@@ -169,6 +169,7 @@ public class TokenInterceptor {
     @GrpcGlobalClientInterceptor
     public static class TokenClientInterceptor implements ClientInterceptor {
 
+
         @Override
         public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor,
                                                                    CallOptions callOptions,
@@ -180,7 +181,7 @@ public class TokenInterceptor {
                 public void start(Listener<RespT> responseListener, Metadata headers) {
                     var tenantId = GrpcContext.getTenantId();
                     var tokenInfo = GrpcContext.getTokenInfo();
-                    log.info("2.Client TenantId: String \n{}", tenantId);
+                    log.info("2.Client TenantId: \n{}", tenantId);
                     if (StringUtils.hasText(tenantId)) {
                         // 添加 租户ID string 类型
                         headers.put(TENANT_ID, tenantId);
@@ -198,7 +199,7 @@ public class TokenInterceptor {
 
                         @Override
                         public void onClose(Status status, Metadata trailers) {
-                            log.info("4.onClose: \n{}", GrpcContext.getTenantId());
+                            log.info("4.Client TenantId: \n{}", GrpcContext.getTenantId());
                             // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
                             GrpcContext.reset();
                             super.onClose(status, trailers);

@@ -6,11 +6,14 @@ import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
+
+
 public class GrpcContext {
 
     private static final TransmittableThreadLocal<String> TENANT_ID = new TransmittableThreadLocal<>();
 
     private static final TransmittableThreadLocal<TokenInfo> TOKEN_INFO = new TransmittableThreadLocal<>();
+
 
     public static void setTenantId(String tenantId) {
         if (StringUtils.hasText(tenantId)) {
@@ -19,6 +22,7 @@ public class GrpcContext {
             TENANT_ID.remove();
         }
     }
+
 
     public static String getTenantId() {
         return TENANT_ID.get();

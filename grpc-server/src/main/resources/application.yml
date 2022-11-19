@@ -16,6 +16,7 @@ spring:
       discovery:
         prefer-ip-address: true
 
+
 info:
   app:
     name: ${spring.application.name}

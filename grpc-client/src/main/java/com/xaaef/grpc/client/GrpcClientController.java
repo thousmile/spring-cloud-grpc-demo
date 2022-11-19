@@ -31,7 +31,9 @@ public class GrpcClientController {
     private final RpcGreeterService greeterService;
 
     private void initToken() {
-        GrpcContext.setTenantId(IdUtil.objectId());
+
+
+
         GrpcContext.setTokenInfo(
                 TokenInfo.newBuilder()
                         .setTokenId(IdUtil.objectId())
@@ -62,7 +64,7 @@ public class GrpcClientController {
     public Object hello(@RequestParam String name) {
         initToken();
         log.info("1.hello TenantId: \n{}", GrpcContext.getTenantId());
-        var ob= Map.of(
+        var ob = Map.of(
                 "msg", greeterService.sayHello(name),
                 "date", LocalDate.now(),
                 "time", LocalTime.now(),
