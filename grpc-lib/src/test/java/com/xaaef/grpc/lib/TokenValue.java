@@ -3,7 +3,6 @@ package com.xaaef.grpc.lib;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
