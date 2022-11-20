@@ -4,7 +4,7 @@ import public "google/protobuf/timestamp.proto";
 import public "google/protobuf/wrappers.proto";
 import public "domain.proto";
 
-package greet;
+package com.xaaef;
 
 option csharp_namespace = "GrpcService1";
 
@@ -15,17 +15,11 @@ option java_multiple_files = true;
 
 option java_package = "com.xaaef.grpc.lib.greet";
 
-// The greeting service definition.
 service Greeter {
 
-
-  // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply);
 
-
-  // Sends a greeting
   rpc GetUserInfo (google.protobuf.StringValue) returns (UserInfo);
-
 
 }
 

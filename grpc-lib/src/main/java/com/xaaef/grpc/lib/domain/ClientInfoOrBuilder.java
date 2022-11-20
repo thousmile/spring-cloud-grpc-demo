@@ -4,7 +4,7 @@
 package com.xaaef.grpc.lib.domain;
 
 public interface ClientInfoOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:greet.ClientInfo)
+    // @@protoc_insertion_point(interface_extends:com.xaaef.ClientInfo)
     com.google.protobuf.MessageOrBuilder {
 
   /**

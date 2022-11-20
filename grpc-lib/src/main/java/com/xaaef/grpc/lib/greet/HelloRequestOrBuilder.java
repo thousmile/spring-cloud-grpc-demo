@@ -4,7 +4,7 @@
 package com.xaaef.grpc.lib.greet;
 
 public interface HelloRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:greet.HelloRequest)
+    // @@protoc_insertion_point(interface_extends:com.xaaef.HelloRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

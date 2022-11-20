@@ -4,11 +4,11 @@
 package com.xaaef.grpc.lib.domain;
 
 /**
- * Protobuf type {@code greet.TokenInfo}
+ * Protobuf type {@code com.xaaef.TokenInfo}
  */
 public  final class TokenInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:greet.TokenInfo)
+    // @@protoc_insertion_point(message_implements:com.xaaef.TokenInfo)
     TokenInfoOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use TokenInfo.newBuilder() to construct.
@@ -123,13 +123,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_TokenInfo_descriptor;
+    return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_TokenInfo_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_TokenInfo_fieldAccessorTable
+    return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_TokenInfo_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.xaaef.grpc.lib.domain.TokenInfo.class, com.xaaef.grpc.lib.domain.TokenInfo.Builder.class);
   }
@@ -276,7 +276,7 @@ private static final long serialVersionUID = 0L;
    * 客户端信息
    * </pre>
    *
-   * <code>.greet.ClientInfo loginClient = 4;</code>
+   * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
    */
   public boolean hasLoginClient() {
     return loginClient_ != null;
@@ -287,7 +287,7 @@ private static final long serialVersionUID = 0L;
    * 客户端信息
    * </pre>
    *
-   * <code>.greet.ClientInfo loginClient = 4;</code>
+   * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
    */
   public com.xaaef.grpc.lib.domain.ClientInfo getLoginClient() {
     return loginClient_ == null ? com.xaaef.grpc.lib.domain.ClientInfo.getDefaultInstance() : loginClient_;
@@ -298,7 +298,7 @@ private static final long serialVersionUID = 0L;
    * 客户端信息
    * </pre>
    *
-   * <code>.greet.ClientInfo loginClient = 4;</code>
+   * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
    */
   public com.xaaef.grpc.lib.domain.ClientInfoOrBuilder getLoginClientOrBuilder() {
     return getLoginClient();
@@ -312,7 +312,7 @@ private static final long serialVersionUID = 0L;
    * 用户信息
    * </pre>
    *
-   * <code>.greet.UserInfo loginUser = 5;</code>
+   * <code>.com.xaaef.UserInfo loginUser = 5;</code>
    */
   public boolean hasLoginUser() {
     return loginUser_ != null;
@@ -323,7 +323,7 @@ private static final long serialVersionUID = 0L;
    * 用户信息
    * </pre>
    *
-   * <code>.greet.UserInfo loginUser = 5;</code>
+   * <code>.com.xaaef.UserInfo loginUser = 5;</code>
    */
   public com.xaaef.grpc.lib.domain.UserInfo getLoginUser() {
     return loginUser_ == null ? com.xaaef.grpc.lib.domain.UserInfo.getDefaultInstance() : loginUser_;
@@ -334,7 +334,7 @@ private static final long serialVersionUID = 0L;
    * 用户信息
    * </pre>
    *
-   * <code>.greet.UserInfo loginUser = 5;</code>
+   * <code>.com.xaaef.UserInfo loginUser = 5;</code>
    */
   public com.xaaef.grpc.lib.domain.UserInfoOrBuilder getLoginUserOrBuilder() {
     return getLoginUser();
@@ -600,21 +600,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code greet.TokenInfo}
+   * Protobuf type {@code com.xaaef.TokenInfo}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:greet.TokenInfo)
+      // @@protoc_insertion_point(builder_implements:com.xaaef.TokenInfo)
       com.xaaef.grpc.lib.domain.TokenInfoOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_TokenInfo_descriptor;
+      return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_TokenInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_TokenInfo_fieldAccessorTable
+      return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_TokenInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.xaaef.grpc.lib.domain.TokenInfo.class, com.xaaef.grpc.lib.domain.TokenInfo.Builder.class);
     }
@@ -667,7 +667,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_TokenInfo_descriptor;
+      return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_TokenInfo_descriptor;
     }
 
     @java.lang.Override
@@ -1099,7 +1099,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public boolean hasLoginClient() {
       return loginClientBuilder_ != null || loginClient_ != null;
@@ -1110,7 +1110,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public com.xaaef.grpc.lib.domain.ClientInfo getLoginClient() {
       if (loginClientBuilder_ == null) {
@@ -1125,7 +1125,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public Builder setLoginClient(com.xaaef.grpc.lib.domain.ClientInfo value) {
       if (loginClientBuilder_ == null) {
@@ -1146,7 +1146,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public Builder setLoginClient(
         com.xaaef.grpc.lib.domain.ClientInfo.Builder builderForValue) {
@@ -1165,7 +1165,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public Builder mergeLoginClient(com.xaaef.grpc.lib.domain.ClientInfo value) {
       if (loginClientBuilder_ == null) {
@@ -1188,7 +1188,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public Builder clearLoginClient() {
       if (loginClientBuilder_ == null) {
@@ -1207,7 +1207,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public com.xaaef.grpc.lib.domain.ClientInfo.Builder getLoginClientBuilder() {
       
@@ -1220,7 +1220,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     public com.xaaef.grpc.lib.domain.ClientInfoOrBuilder getLoginClientOrBuilder() {
       if (loginClientBuilder_ != null) {
@@ -1236,7 +1236,7 @@ private static final long serialVersionUID = 0L;
      * 客户端信息
      * </pre>
      *
-     * <code>.greet.ClientInfo loginClient = 4;</code>
+     * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.xaaef.grpc.lib.domain.ClientInfo, com.xaaef.grpc.lib.domain.ClientInfo.Builder, com.xaaef.grpc.lib.domain.ClientInfoOrBuilder> 
@@ -1261,7 +1261,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public boolean hasLoginUser() {
       return loginUserBuilder_ != null || loginUser_ != null;
@@ -1272,7 +1272,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public com.xaaef.grpc.lib.domain.UserInfo getLoginUser() {
       if (loginUserBuilder_ == null) {
@@ -1287,7 +1287,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public Builder setLoginUser(com.xaaef.grpc.lib.domain.UserInfo value) {
       if (loginUserBuilder_ == null) {
@@ -1308,7 +1308,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public Builder setLoginUser(
         com.xaaef.grpc.lib.domain.UserInfo.Builder builderForValue) {
@@ -1327,7 +1327,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public Builder mergeLoginUser(com.xaaef.grpc.lib.domain.UserInfo value) {
       if (loginUserBuilder_ == null) {
@@ -1350,7 +1350,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public Builder clearLoginUser() {
       if (loginUserBuilder_ == null) {
@@ -1369,7 +1369,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public com.xaaef.grpc.lib.domain.UserInfo.Builder getLoginUserBuilder() {
       
@@ -1382,7 +1382,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     public com.xaaef.grpc.lib.domain.UserInfoOrBuilder getLoginUserOrBuilder() {
       if (loginUserBuilder_ != null) {
@@ -1398,7 +1398,7 @@ private static final long serialVersionUID = 0L;
      * 用户信息
      * </pre>
      *
-     * <code>.greet.UserInfo loginUser = 5;</code>
+     * <code>.com.xaaef.UserInfo loginUser = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.xaaef.grpc.lib.domain.UserInfo, com.xaaef.grpc.lib.domain.UserInfo.Builder, com.xaaef.grpc.lib.domain.UserInfoOrBuilder> 
@@ -1588,10 +1588,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:greet.TokenInfo)
+    // @@protoc_insertion_point(builder_scope:com.xaaef.TokenInfo)
   }
 
-  // @@protoc_insertion_point(class_scope:greet.TokenInfo)
+  // @@protoc_insertion_point(class_scope:com.xaaef.TokenInfo)
   private static final com.xaaef.grpc.lib.domain.TokenInfo DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new com.xaaef.grpc.lib.domain.TokenInfo();

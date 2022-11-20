@@ -13,3 +13,20 @@ GET {{baseUrl}}/getUserInfo?name=jack
 Content-Type: application/json
 
 
+
+
+### getString
+GET {{baseUrl}}/getString?key=jack
+Content-Type: application/json
+
+
+### getBool
+GET {{baseUrl}}/getBool?key=tom
+Content-Type: application/json
+
+
+### getNumber
+GET {{baseUrl}}/getNumber?key=alice
+Content-Type: application/json
+
+

@@ -1,6 +1,5 @@
 ## 断路器 配置
 resilience4j.circuitbreaker:
-  circuit-breaker-aspect-order: 1
   configs:
     default:
       registerHealthIndicator: true
@@ -22,17 +21,14 @@ resilience4j.circuitbreaker:
 
 ## 超时配置
 resilience4j.timelimiter:
-  time-limiter-aspect-order: 2
   configs:
     default:
       timeout-duration: 1s
       cancel-running-future: true
 
 
-
 ## 重试配置
 resilience4j.retry:
-  retry-aspect-order: 3
   configs:
     default:
       max-attempts: 2
@@ -47,7 +43,6 @@ resilience4j.retry:
 
 ## 限流配置
 resilience4j.ratelimiter:
-  rate-limiter-aspect-order: 4
   configs:
     default:
       registerHealthIndicator: false

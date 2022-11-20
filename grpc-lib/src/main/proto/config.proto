@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import public "google/protobuf/timestamp.proto";
+import public "google/protobuf/wrappers.proto";
+
+package com.xaaef;
+
+option csharp_namespace = "GrpcService1";
+
+option go_package = ".;message";
+
+option java_multiple_files = true;
+
+option java_package = "com.xaaef.grpc.lib.config";
+
+service Config {
+
+  rpc GetStringValue (google.protobuf.StringValue) returns (google.protobuf.StringValue);
+
+  rpc GetBoolValue (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
+
+  rpc GetNumberValue (google.protobuf.StringValue) returns (google.protobuf.Int64Value);
+
+}
+

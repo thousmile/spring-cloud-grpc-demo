@@ -3,9 +3,6 @@ package com.xaaef.grpc.lib.greet;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * The greeting service definition.
- * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.42.2)",
@@ -15,7 +12,7 @@ public final class GreeterGrpc {
 
   private GreeterGrpc() {}
 
-  public static final String SERVICE_NAME = "greet.Greeter";
+  public static final String SERVICE_NAME = "com.xaaef.Greeter";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.xaaef.grpc.lib.greet.HelloRequest,
@@ -125,16 +122,10 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static abstract class GreeterImplBase implements io.grpc.BindableService {
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public void sayHello(com.xaaef.grpc.lib.greet.HelloRequest request,
         io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.greet.HelloReply> responseObserver) {
@@ -142,9 +133,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public void getUserInfo(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo> responseObserver) {
@@ -172,9 +160,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static final class GreeterStub extends io.grpc.stub.AbstractAsyncStub<GreeterStub> {
     private GreeterStub(
@@ -189,9 +174,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public void sayHello(com.xaaef.grpc.lib.greet.HelloRequest request,
         io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.greet.HelloReply> responseObserver) {
@@ -200,9 +182,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public void getUserInfo(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo> responseObserver) {
@@ -212,9 +191,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static final class GreeterBlockingStub extends io.grpc.stub.AbstractBlockingStub<GreeterBlockingStub> {
     private GreeterBlockingStub(
@@ -229,9 +205,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public com.xaaef.grpc.lib.greet.HelloReply sayHello(com.xaaef.grpc.lib.greet.HelloRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -239,9 +212,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public com.xaaef.grpc.lib.domain.UserInfo getUserInfo(com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -250,9 +220,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static final class GreeterFutureStub extends io.grpc.stub.AbstractFutureStub<GreeterFutureStub> {
     private GreeterFutureStub(
@@ -267,9 +234,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.greet.HelloReply> sayHello(
         com.xaaef.grpc.lib.greet.HelloRequest request) {
@@ -278,9 +242,6 @@ public final class GreeterGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a greeting
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.domain.UserInfo> getUserInfo(
         com.google.protobuf.StringValue request) {

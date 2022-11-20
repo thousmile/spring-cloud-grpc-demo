@@ -10,6 +10,7 @@ import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.domain.ClientInfo;
 import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.domain.UserInfo;
+import com.xaaef.grpc.lib.rpc.RpcConfigService;
 import com.xaaef.grpc.lib.rpc.RpcGreeterService;
 import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.ProtobufUtils;
@@ -23,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 
 @Slf4j
@@ -32,11 +34,14 @@ public class GrpcClientController {
 
     private final RpcGreeterService greeterService;
 
+    private final RpcConfigService configService;
+
+
     private void initToken() {
-        GrpcContext.setTenantId(IdUtil.simpleUUID());
+        GrpcContext.setTenantId(IdUtil.fastSimpleUUID());
         GrpcContext.setTokenInfo(
                 TokenInfo.newBuilder()
-                        .setTokenId(IdUtil.objectId())
+                        .setTokenId(IdUtil.fastSimpleUUID())
                         .setTenantId(IdUtil.fastSimpleUUID())
                         .setGrantType("sms")
                         .setLoginClient(
@@ -84,5 +89,23 @@ public class GrpcClientController {
         return greeterService.sayHello(name);
     }
 
+
+    @GetMapping("getString")
+    public String GetStringValue(@RequestParam String key) {
+        return configService.getStringValue(key);
+    }
+
+
+    @GetMapping("getBool")
+    public Boolean GetBoolValue(@RequestParam String key) {
+        return configService.getBoolValue(key);
+    }
+
+
+    @GetMapping("getNumber")
+    public Long getNumberValue(@RequestParam String key) throws Exception {
+        initToken();
+        return configService.getNumberValue(key).get();
+    }
 
 }

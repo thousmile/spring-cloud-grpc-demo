@@ -4,7 +4,7 @@
 package com.xaaef.grpc.lib.domain;
 
 public interface TokenInfoOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:greet.TokenInfo)
+    // @@protoc_insertion_point(interface_extends:com.xaaef.TokenInfo)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -75,7 +75,7 @@ public interface TokenInfoOrBuilder extends
    * 客户端信息
    * </pre>
    *
-   * <code>.greet.ClientInfo loginClient = 4;</code>
+   * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
    */
   boolean hasLoginClient();
   /**
@@ -84,7 +84,7 @@ public interface TokenInfoOrBuilder extends
    * 客户端信息
    * </pre>
    *
-   * <code>.greet.ClientInfo loginClient = 4;</code>
+   * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
    */
   com.xaaef.grpc.lib.domain.ClientInfo getLoginClient();
   /**
@@ -93,7 +93,7 @@ public interface TokenInfoOrBuilder extends
    * 客户端信息
    * </pre>
    *
-   * <code>.greet.ClientInfo loginClient = 4;</code>
+   * <code>.com.xaaef.ClientInfo loginClient = 4;</code>
    */
   com.xaaef.grpc.lib.domain.ClientInfoOrBuilder getLoginClientOrBuilder();
 
@@ -103,7 +103,7 @@ public interface TokenInfoOrBuilder extends
    * 用户信息
    * </pre>
    *
-   * <code>.greet.UserInfo loginUser = 5;</code>
+   * <code>.com.xaaef.UserInfo loginUser = 5;</code>
    */
   boolean hasLoginUser();
   /**
@@ -112,7 +112,7 @@ public interface TokenInfoOrBuilder extends
    * 用户信息
    * </pre>
    *
-   * <code>.greet.UserInfo loginUser = 5;</code>
+   * <code>.com.xaaef.UserInfo loginUser = 5;</code>
    */
   com.xaaef.grpc.lib.domain.UserInfo getLoginUser();
   /**
@@ -121,7 +121,7 @@ public interface TokenInfoOrBuilder extends
    * 用户信息
    * </pre>
    *
-   * <code>.greet.UserInfo loginUser = 5;</code>
+   * <code>.com.xaaef.UserInfo loginUser = 5;</code>
    */
   com.xaaef.grpc.lib.domain.UserInfoOrBuilder getLoginUserOrBuilder();
 
