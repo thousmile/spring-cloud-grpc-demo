@@ -2,9 +2,6 @@ package com.xaaef.grpc.client;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
-import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.util.Timestamps;
 import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.domain.ClientInfo;
@@ -19,9 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.List;
 import java.util.Map;
 
 
@@ -32,24 +27,47 @@ public class GrpcClientController {
 
     private final RpcGreeterService greeterService;
 
+    private final static List<String> ARR = List.of("A", "B", "C", "D", "E", "F", "G", "H", "Q", "W", "Y", "U", "I");
+
+
     private void initToken() {
         GrpcContext.setTenantId(IdUtil.simpleUUID());
         GrpcContext.setTokenInfo(
                 TokenInfo.newBuilder()
                         .setTokenId(IdUtil.objectId())
                         .setTenantId(IdUtil.fastSimpleUUID())
-                        .setGrantType("sms")
+                        .setGrantType("password")
                         .setLoginClient(
                                 ClientInfo.newBuilder()
-                                        .setClientId(RandomUtil.randomString(10))
+                                        .setClientId(RandomUtil.randomString(18))
                                         .setClientType(1)
+                                        .setTenantId(RandomUtil.randomString(18))
+                                        .setSecret(RandomUtil.randomString(32))
                                         .setName("一二三科技有限公司")
+                                        .setLogo(RandomUtil.randomString(36))
+                                        .setDescription(RandomUtil.randomString(36))
+                                        .setClientType(RandomUtil.randomInt())
+                                        .addAllGrantTypes(RandomUtil.randomEleList(ARR, 5))
+                                        .setDomainName(RandomUtil.randomString(99))
+                                        .setScope(RandomUtil.randomString(5))
                                         .build()
                         )
                         .setLoginUser(
                                 UserInfo.newBuilder()
                                         .setUserId(RandomUtil.randomLong())
+                                        .setTenantId(RandomUtil.randomString(32))
+                                        .setAvatar(RandomUtil.randomString(64))
+                                        .setUsername(RandomUtil.randomString(12))
+                                        .setMobile(RandomUtil.randomString(11))
+                                        .setEmail(RandomUtil.randomString(18))
                                         .setNickname(RandomUtil.randomString(10))
+                                        .setPassword(RandomUtil.randomString(64))
+                                        .setGender(RandomUtil.randomInt())
+                                        .setUserType(RandomUtil.randomInt())
+                                        .setDeptId(RandomUtil.randomInt())
+                                        .setStatus(RandomUtil.randomInt())
+                                        .setAdminFlag(RandomUtil.randomInt())
+                                        .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
                                         .build()
                         )
                         .setLoginTime(
@@ -74,7 +92,17 @@ public class GrpcClientController {
     public Map<String, Object> getUserInfo(@RequestParam String name) {
         initToken();
         var userInfo = greeterService.getUserInfo(name);
-        return JsonUtils.toMap(ProtobufUtils.toJson(userInfo), String.class, Object.class);
+        var json = ProtobufUtils.toJson(userInfo);
+        return JsonUtils.toMap(json, String.class, Object.class);
+    }
+
+
+    @GetMapping("getTokenInfo")
+    public Map<String, Object> getTokenInfo() {
+        initToken();
+        var tokenInfo = GrpcContext.getTokenInfo();
+        var json = ProtobufUtils.toJson(tokenInfo);
+        return JsonUtils.toMap(json, String.class, Object.class);
     }
 
 

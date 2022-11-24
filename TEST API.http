@@ -13,3 +13,9 @@ GET {{baseUrl}}/getUserInfo?name=jack
 Content-Type: application/json
 
 
+
+### getTokenInfo
+GET {{baseUrl}}/getTokenInfo
+Content-Type: application/json
+
+

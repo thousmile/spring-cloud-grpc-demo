@@ -14,6 +14,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>string tokenId = 1;</code>
+   * @return The tokenId.
    */
   java.lang.String getTokenId();
   /**
@@ -23,6 +24,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>string tokenId = 1;</code>
+   * @return The bytes for tokenId.
    */
   com.google.protobuf.ByteString
       getTokenIdBytes();
@@ -35,6 +37,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>string grantType = 2;</code>
+   * @return The grantType.
    */
   java.lang.String getGrantType();
   /**
@@ -45,6 +48,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>string grantType = 2;</code>
+   * @return The bytes for grantType.
    */
   com.google.protobuf.ByteString
       getGrantTypeBytes();
@@ -56,6 +60,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>string tenantId = 3;</code>
+   * @return The tenantId.
    */
   java.lang.String getTenantId();
   /**
@@ -65,6 +70,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>string tenantId = 3;</code>
+   * @return The bytes for tenantId.
    */
   com.google.protobuf.ByteString
       getTenantIdBytes();
@@ -76,6 +82,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>.greet.ClientInfo loginClient = 4;</code>
+   * @return Whether the loginClient field is set.
    */
   boolean hasLoginClient();
   /**
@@ -85,6 +92,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>.greet.ClientInfo loginClient = 4;</code>
+   * @return The loginClient.
    */
   com.xaaef.grpc.lib.domain.ClientInfo getLoginClient();
   /**
@@ -104,6 +112,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>.greet.UserInfo loginUser = 5;</code>
+   * @return Whether the loginUser field is set.
    */
   boolean hasLoginUser();
   /**
@@ -113,6 +122,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>.greet.UserInfo loginUser = 5;</code>
+   * @return The loginUser.
    */
   com.xaaef.grpc.lib.domain.UserInfo getLoginUser();
   /**
@@ -132,6 +142,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp loginTime = 6;</code>
+   * @return Whether the loginTime field is set.
    */
   boolean hasLoginTime();
   /**
@@ -141,6 +152,7 @@ public interface TokenInfoOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp loginTime = 6;</code>
+   * @return The loginTime.
    */
   com.google.protobuf.Timestamp getLoginTime();
   /**

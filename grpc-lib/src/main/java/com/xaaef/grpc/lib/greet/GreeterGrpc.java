@@ -3,12 +3,9 @@ package com.xaaef.grpc.lib.greet;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * The greeting service definition.
- * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.42.2)",
+    value = "by gRPC proto compiler (version 1.51.0)",
     comments = "Source: greet.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class GreeterGrpc {
@@ -125,9 +122,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static abstract class GreeterImplBase implements io.grpc.BindableService {
 
@@ -172,9 +166,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static final class GreeterStub extends io.grpc.stub.AbstractAsyncStub<GreeterStub> {
     private GreeterStub(
@@ -212,9 +203,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static final class GreeterBlockingStub extends io.grpc.stub.AbstractBlockingStub<GreeterBlockingStub> {
     private GreeterBlockingStub(
@@ -250,9 +238,6 @@ public final class GreeterGrpc {
   }
 
   /**
-   * <pre>
-   * The greeting service definition.
-   * </pre>
    */
   public static final class GreeterFutureStub extends io.grpc.stub.AbstractFutureStub<GreeterFutureStub> {
     private GreeterFutureStub(

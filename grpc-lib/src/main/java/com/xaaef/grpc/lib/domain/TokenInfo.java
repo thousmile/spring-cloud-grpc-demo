@@ -6,7 +6,7 @@ package com.xaaef.grpc.lib.domain;
 /**
  * Protobuf type {@code greet.TokenInfo}
  */
-public  final class TokenInfo extends
+public final class TokenInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:greet.TokenInfo)
     TokenInfoOrBuilder {
@@ -22,104 +22,16 @@ private static final long serialVersionUID = 0L;
   }
 
   @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new TokenInfo();
+  }
+
+  @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
-  }
-  private TokenInfo(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            tokenId_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            grantType_ = s;
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            tenantId_ = s;
-            break;
-          }
-          case 34: {
-            com.xaaef.grpc.lib.domain.ClientInfo.Builder subBuilder = null;
-            if (loginClient_ != null) {
-              subBuilder = loginClient_.toBuilder();
-            }
-            loginClient_ = input.readMessage(com.xaaef.grpc.lib.domain.ClientInfo.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(loginClient_);
-              loginClient_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 42: {
-            com.xaaef.grpc.lib.domain.UserInfo.Builder subBuilder = null;
-            if (loginUser_ != null) {
-              subBuilder = loginUser_.toBuilder();
-            }
-            loginUser_ = input.readMessage(com.xaaef.grpc.lib.domain.UserInfo.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(loginUser_);
-              loginUser_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 50: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (loginTime_ != null) {
-              subBuilder = loginTime_.toBuilder();
-            }
-            loginTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(loginTime_);
-              loginTime_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
@@ -143,7 +55,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string tokenId = 1;</code>
+   * @return The tokenId.
    */
+  @java.lang.Override
   public java.lang.String getTokenId() {
     java.lang.Object ref = tokenId_;
     if (ref instanceof java.lang.String) {
@@ -163,7 +77,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string tokenId = 1;</code>
+   * @return The bytes for tokenId.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getTokenIdBytes() {
     java.lang.Object ref = tokenId_;
@@ -188,7 +104,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string grantType = 2;</code>
+   * @return The grantType.
    */
+  @java.lang.Override
   public java.lang.String getGrantType() {
     java.lang.Object ref = grantType_;
     if (ref instanceof java.lang.String) {
@@ -209,7 +127,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string grantType = 2;</code>
+   * @return The bytes for grantType.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getGrantTypeBytes() {
     java.lang.Object ref = grantType_;
@@ -233,7 +153,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string tenantId = 3;</code>
+   * @return The tenantId.
    */
+  @java.lang.Override
   public java.lang.String getTenantId() {
     java.lang.Object ref = tenantId_;
     if (ref instanceof java.lang.String) {
@@ -253,7 +175,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string tenantId = 3;</code>
+   * @return The bytes for tenantId.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getTenantIdBytes() {
     java.lang.Object ref = tenantId_;
@@ -277,7 +201,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.greet.ClientInfo loginClient = 4;</code>
+   * @return Whether the loginClient field is set.
    */
+  @java.lang.Override
   public boolean hasLoginClient() {
     return loginClient_ != null;
   }
@@ -288,7 +214,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.greet.ClientInfo loginClient = 4;</code>
+   * @return The loginClient.
    */
+  @java.lang.Override
   public com.xaaef.grpc.lib.domain.ClientInfo getLoginClient() {
     return loginClient_ == null ? com.xaaef.grpc.lib.domain.ClientInfo.getDefaultInstance() : loginClient_;
   }
@@ -300,6 +228,7 @@ private static final long serialVersionUID = 0L;
    *
    * <code>.greet.ClientInfo loginClient = 4;</code>
    */
+  @java.lang.Override
   public com.xaaef.grpc.lib.domain.ClientInfoOrBuilder getLoginClientOrBuilder() {
     return getLoginClient();
   }
@@ -313,7 +242,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.greet.UserInfo loginUser = 5;</code>
+   * @return Whether the loginUser field is set.
    */
+  @java.lang.Override
   public boolean hasLoginUser() {
     return loginUser_ != null;
   }
@@ -324,7 +255,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.greet.UserInfo loginUser = 5;</code>
+   * @return The loginUser.
    */
+  @java.lang.Override
   public com.xaaef.grpc.lib.domain.UserInfo getLoginUser() {
     return loginUser_ == null ? com.xaaef.grpc.lib.domain.UserInfo.getDefaultInstance() : loginUser_;
   }
@@ -336,6 +269,7 @@ private static final long serialVersionUID = 0L;
    *
    * <code>.greet.UserInfo loginUser = 5;</code>
    */
+  @java.lang.Override
   public com.xaaef.grpc.lib.domain.UserInfoOrBuilder getLoginUserOrBuilder() {
     return getLoginUser();
   }
@@ -349,7 +283,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp loginTime = 6;</code>
+   * @return Whether the loginTime field is set.
    */
+  @java.lang.Override
   public boolean hasLoginTime() {
     return loginTime_ != null;
   }
@@ -360,7 +296,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp loginTime = 6;</code>
+   * @return The loginTime.
    */
+  @java.lang.Override
   public com.google.protobuf.Timestamp getLoginTime() {
     return loginTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : loginTime_;
   }
@@ -372,6 +310,7 @@ private static final long serialVersionUID = 0L;
    *
    * <code>.google.protobuf.Timestamp loginTime = 6;</code>
    */
+  @java.lang.Override
   public com.google.protobuf.TimestampOrBuilder getLoginTimeOrBuilder() {
     return getLoginTime();
   }
@@ -390,13 +329,13 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getTokenIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokenId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tokenId_);
     }
-    if (!getGrantTypeBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantType_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, grantType_);
     }
-    if (!getTenantIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tenantId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, tenantId_);
     }
     if (loginClient_ != null) {
@@ -408,7 +347,7 @@ private static final long serialVersionUID = 0L;
     if (loginTime_ != null) {
       output.writeMessage(6, getLoginTime());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -417,13 +356,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getTokenIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokenId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tokenId_);
     }
-    if (!getGrantTypeBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantType_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, grantType_);
     }
-    if (!getTenantIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tenantId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, tenantId_);
     }
     if (loginClient_ != null) {
@@ -438,7 +377,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, getLoginTime());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -453,30 +392,29 @@ private static final long serialVersionUID = 0L;
     }
     com.xaaef.grpc.lib.domain.TokenInfo other = (com.xaaef.grpc.lib.domain.TokenInfo) obj;
 
-    boolean result = true;
-    result = result && getTokenId()
-        .equals(other.getTokenId());
-    result = result && getGrantType()
-        .equals(other.getGrantType());
-    result = result && getTenantId()
-        .equals(other.getTenantId());
-    result = result && (hasLoginClient() == other.hasLoginClient());
+    if (!getTokenId()
+        .equals(other.getTokenId())) return false;
+    if (!getGrantType()
+        .equals(other.getGrantType())) return false;
+    if (!getTenantId()
+        .equals(other.getTenantId())) return false;
+    if (hasLoginClient() != other.hasLoginClient()) return false;
     if (hasLoginClient()) {
-      result = result && getLoginClient()
-          .equals(other.getLoginClient());
+      if (!getLoginClient()
+          .equals(other.getLoginClient())) return false;
     }
-    result = result && (hasLoginUser() == other.hasLoginUser());
+    if (hasLoginUser() != other.hasLoginUser()) return false;
     if (hasLoginUser()) {
-      result = result && getLoginUser()
-          .equals(other.getLoginUser());
+      if (!getLoginUser()
+          .equals(other.getLoginUser())) return false;
     }
-    result = result && (hasLoginTime() == other.hasLoginTime());
+    if (hasLoginTime() != other.hasLoginTime()) return false;
     if (hasLoginTime()) {
-      result = result && getLoginTime()
-          .equals(other.getLoginTime());
+      if (!getLoginTime()
+          .equals(other.getLoginTime())) return false;
     }
-    result = result && unknownFields.equals(other.unknownFields);
-    return result;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+    return true;
   }
 
   @java.lang.Override
@@ -504,7 +442,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + LOGINTIME_FIELD_NUMBER;
       hash = (53 * hash) + getLoginTime().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -621,18 +559,13 @@ private static final long serialVersionUID = 0L;
 
     // Construct using com.xaaef.grpc.lib.domain.TokenInfo.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
@@ -711,35 +644,35 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder clone() {
-      return (Builder) super.clone();
+      return super.clone();
     }
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return (Builder) super.setField(field, value);
+      return super.setField(field, value);
     }
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return (Builder) super.clearField(field);
+      return super.clearField(field);
     }
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return (Builder) super.clearOneof(oneof);
+      return super.clearOneof(oneof);
     }
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
-      return (Builder) super.setRepeatedField(field, index, value);
+      return super.setRepeatedField(field, index, value);
     }
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return (Builder) super.addRepeatedField(field, value);
+      return super.addRepeatedField(field, value);
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -774,7 +707,7 @@ private static final long serialVersionUID = 0L;
       if (other.hasLoginTime()) {
         mergeLoginTime(other.getLoginTime());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -789,17 +722,66 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.xaaef.grpc.lib.domain.TokenInfo parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              tokenId_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 10
+            case 18: {
+              grantType_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 18
+            case 26: {
+              tenantId_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 26
+            case 34: {
+              input.readMessage(
+                  getLoginClientFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 34
+            case 42: {
+              input.readMessage(
+                  getLoginUserFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 42
+            case 50: {
+              input.readMessage(
+                  getLoginTimeFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 50
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.xaaef.grpc.lib.domain.TokenInfo) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
 
@@ -811,6 +793,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tokenId = 1;</code>
+     * @return The tokenId.
      */
     public java.lang.String getTokenId() {
       java.lang.Object ref = tokenId_;
@@ -831,6 +814,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tokenId = 1;</code>
+     * @return The bytes for tokenId.
      */
     public com.google.protobuf.ByteString
         getTokenIdBytes() {
@@ -852,6 +836,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tokenId = 1;</code>
+     * @param value The tokenId to set.
+     * @return This builder for chaining.
      */
     public Builder setTokenId(
         java.lang.String value) {
@@ -870,6 +856,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tokenId = 1;</code>
+     * @return This builder for chaining.
      */
     public Builder clearTokenId() {
       
@@ -884,6 +871,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tokenId = 1;</code>
+     * @param value The bytes for tokenId to set.
+     * @return This builder for chaining.
      */
     public Builder setTokenIdBytes(
         com.google.protobuf.ByteString value) {
@@ -906,6 +895,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string grantType = 2;</code>
+     * @return The grantType.
      */
     public java.lang.String getGrantType() {
       java.lang.Object ref = grantType_;
@@ -927,6 +917,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string grantType = 2;</code>
+     * @return The bytes for grantType.
      */
     public com.google.protobuf.ByteString
         getGrantTypeBytes() {
@@ -949,6 +940,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string grantType = 2;</code>
+     * @param value The grantType to set.
+     * @return This builder for chaining.
      */
     public Builder setGrantType(
         java.lang.String value) {
@@ -968,6 +961,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string grantType = 2;</code>
+     * @return This builder for chaining.
      */
     public Builder clearGrantType() {
       
@@ -983,6 +977,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string grantType = 2;</code>
+     * @param value The bytes for grantType to set.
+     * @return This builder for chaining.
      */
     public Builder setGrantTypeBytes(
         com.google.protobuf.ByteString value) {
@@ -1004,6 +1000,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 3;</code>
+     * @return The tenantId.
      */
     public java.lang.String getTenantId() {
       java.lang.Object ref = tenantId_;
@@ -1024,6 +1021,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 3;</code>
+     * @return The bytes for tenantId.
      */
     public com.google.protobuf.ByteString
         getTenantIdBytes() {
@@ -1045,6 +1043,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 3;</code>
+     * @param value The tenantId to set.
+     * @return This builder for chaining.
      */
     public Builder setTenantId(
         java.lang.String value) {
@@ -1063,6 +1063,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 3;</code>
+     * @return This builder for chaining.
      */
     public Builder clearTenantId() {
       
@@ -1077,6 +1078,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 3;</code>
+     * @param value The bytes for tenantId to set.
+     * @return This builder for chaining.
      */
     public Builder setTenantIdBytes(
         com.google.protobuf.ByteString value) {
@@ -1090,7 +1093,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.xaaef.grpc.lib.domain.ClientInfo loginClient_ = null;
+    private com.xaaef.grpc.lib.domain.ClientInfo loginClient_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.xaaef.grpc.lib.domain.ClientInfo, com.xaaef.grpc.lib.domain.ClientInfo.Builder, com.xaaef.grpc.lib.domain.ClientInfoOrBuilder> loginClientBuilder_;
     /**
@@ -1100,6 +1103,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.greet.ClientInfo loginClient = 4;</code>
+     * @return Whether the loginClient field is set.
      */
     public boolean hasLoginClient() {
       return loginClientBuilder_ != null || loginClient_ != null;
@@ -1111,6 +1115,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.greet.ClientInfo loginClient = 4;</code>
+     * @return The loginClient.
      */
     public com.xaaef.grpc.lib.domain.ClientInfo getLoginClient() {
       if (loginClientBuilder_ == null) {
@@ -1252,7 +1257,7 @@ private static final long serialVersionUID = 0L;
       return loginClientBuilder_;
     }
 
-    private com.xaaef.grpc.lib.domain.UserInfo loginUser_ = null;
+    private com.xaaef.grpc.lib.domain.UserInfo loginUser_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.xaaef.grpc.lib.domain.UserInfo, com.xaaef.grpc.lib.domain.UserInfo.Builder, com.xaaef.grpc.lib.domain.UserInfoOrBuilder> loginUserBuilder_;
     /**
@@ -1262,6 +1267,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.greet.UserInfo loginUser = 5;</code>
+     * @return Whether the loginUser field is set.
      */
     public boolean hasLoginUser() {
       return loginUserBuilder_ != null || loginUser_ != null;
@@ -1273,6 +1279,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.greet.UserInfo loginUser = 5;</code>
+     * @return The loginUser.
      */
     public com.xaaef.grpc.lib.domain.UserInfo getLoginUser() {
       if (loginUserBuilder_ == null) {
@@ -1414,7 +1421,7 @@ private static final long serialVersionUID = 0L;
       return loginUserBuilder_;
     }
 
-    private com.google.protobuf.Timestamp loginTime_ = null;
+    private com.google.protobuf.Timestamp loginTime_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> loginTimeBuilder_;
     /**
@@ -1424,6 +1431,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp loginTime = 6;</code>
+     * @return Whether the loginTime field is set.
      */
     public boolean hasLoginTime() {
       return loginTimeBuilder_ != null || loginTime_ != null;
@@ -1435,6 +1443,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp loginTime = 6;</code>
+     * @return The loginTime.
      */
     public com.google.protobuf.Timestamp getLoginTime() {
       if (loginTimeBuilder_ == null) {
@@ -1578,7 +1587,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
+      return super.setUnknownFields(unknownFields);
     }
 
     @java.lang.Override
@@ -1608,7 +1617,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new TokenInfo(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

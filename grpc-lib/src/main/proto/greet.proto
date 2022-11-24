@@ -8,14 +8,14 @@ package greet;
 
 option csharp_namespace = "GrpcService1";
 
-// go 生成包名 message
 option go_package = ".;message";
 
 option java_multiple_files = true;
 
 option java_package = "com.xaaef.grpc.lib.greet";
 
-// The greeting service definition.
+
+
 service Greeter {
 
 

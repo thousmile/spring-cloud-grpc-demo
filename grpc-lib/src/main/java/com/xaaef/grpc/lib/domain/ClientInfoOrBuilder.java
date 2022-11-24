@@ -14,6 +14,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string clientId = 1;</code>
+   * @return The clientId.
    */
   java.lang.String getClientId();
   /**
@@ -23,6 +24,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string clientId = 1;</code>
+   * @return The bytes for clientId.
    */
   com.google.protobuf.ByteString
       getClientIdBytes();
@@ -34,6 +36,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string tenantId = 2;</code>
+   * @return The tenantId.
    */
   java.lang.String getTenantId();
   /**
@@ -43,6 +46,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string tenantId = 2;</code>
+   * @return The bytes for tenantId.
    */
   com.google.protobuf.ByteString
       getTenantIdBytes();
@@ -54,6 +58,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string secret = 3;</code>
+   * @return The secret.
    */
   java.lang.String getSecret();
   /**
@@ -63,6 +68,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string secret = 3;</code>
+   * @return The bytes for secret.
    */
   com.google.protobuf.ByteString
       getSecretBytes();
@@ -74,6 +80,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string name = 4;</code>
+   * @return The name.
    */
   java.lang.String getName();
   /**
@@ -83,6 +90,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string name = 4;</code>
+   * @return The bytes for name.
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -94,6 +102,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string logo = 5;</code>
+   * @return The logo.
    */
   java.lang.String getLogo();
   /**
@@ -103,6 +112,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string logo = 5;</code>
+   * @return The bytes for logo.
    */
   com.google.protobuf.ByteString
       getLogoBytes();
@@ -114,6 +124,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string description = 6;</code>
+   * @return The description.
    */
   java.lang.String getDescription();
   /**
@@ -123,6 +134,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string description = 6;</code>
+   * @return The bytes for description.
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();
@@ -134,6 +146,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>int32 clientType = 7;</code>
+   * @return The clientType.
    */
   int getClientType();
 
@@ -145,6 +158,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>repeated string grantTypes = 8;</code>
+   * @return A list containing the grantTypes.
    */
   java.util.List<java.lang.String>
       getGrantTypesList();
@@ -156,6 +170,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>repeated string grantTypes = 8;</code>
+   * @return The count of grantTypes.
    */
   int getGrantTypesCount();
   /**
@@ -166,6 +181,8 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>repeated string grantTypes = 8;</code>
+   * @param index The index of the element to return.
+   * @return The grantTypes at the given index.
    */
   java.lang.String getGrantTypes(int index);
   /**
@@ -176,6 +193,8 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>repeated string grantTypes = 8;</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the grantTypes at the given index.
    */
   com.google.protobuf.ByteString
       getGrantTypesBytes(int index);
@@ -187,6 +206,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string domainName = 9;</code>
+   * @return The domainName.
    */
   java.lang.String getDomainName();
   /**
@@ -196,6 +216,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string domainName = 9;</code>
+   * @return The bytes for domainName.
    */
   com.google.protobuf.ByteString
       getDomainNameBytes();
@@ -207,6 +228,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string scope = 10;</code>
+   * @return The scope.
    */
   java.lang.String getScope();
   /**
@@ -216,6 +238,7 @@ public interface ClientInfoOrBuilder extends
    * </pre>
    *
    * <code>string scope = 10;</code>
+   * @return The bytes for scope.
    */
   com.google.protobuf.ByteString
       getScopeBytes();

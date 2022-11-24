@@ -43,21 +43,13 @@ public final class Greet {
       "rInfoB6\n\030com.xaaef.grpc.lib.greetP\001Z\t.;m" +
       "essage\252\002\014GrpcService1P\000P\001P\002b\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.WrappersProto.getDescriptor(),
           com.xaaef.grpc.lib.domain.Domain.getDescriptor(),
-        }, assigner);
+        });
     internal_static_greet_HelloRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_greet_HelloRequest_fieldAccessorTable = new

@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.core.env.Environment;
 
+import java.time.LocalTime;
 import java.util.UUID;
 
 
@@ -53,24 +54,28 @@ public class GreeterGrpcImpl extends GreeterGrpc.GreeterImplBase {
 
     @Override
     public void getUserInfo(StringValue request, StreamObserver<UserInfo> responseObserver) {
-        var reply = UserInfo.newBuilder()
-                .setUserId(RandomUtil.randomLong())
-                .setTenantId(RandomUtil.randomString(32))
-                .setAvatar(RandomUtil.randomString(64))
-                .setUsername(request.getValue())
-                .setMobile(RandomUtil.randomString(11))
-                .setEmail(RandomUtil.randomString(18))
-                .setNickname(RandomUtil.randomString(10))
-                .setPassword(RandomUtil.randomString(64))
-                .setGender(RandomUtil.randomInt())
-                .setUserType(RandomUtil.randomInt())
-                .setDeptId(RandomUtil.randomInt())
-                .setStatus(RandomUtil.randomInt())
-                .setAdminFlag(RandomUtil.randomInt())
-                .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
-                .build();
-        responseObserver.onNext(reply);
-        responseObserver.onCompleted();
+        if (LocalTime.now().getSecond() % 2 == 0) {
+            var reply = UserInfo.newBuilder()
+                    .setUserId(RandomUtil.randomLong())
+                    .setTenantId(RandomUtil.randomString(32))
+                    .setAvatar(RandomUtil.randomString(64))
+                    .setUsername(request.getValue())
+                    .setMobile(RandomUtil.randomString(11))
+                    .setEmail(RandomUtil.randomString(18))
+                    .setNickname(RandomUtil.randomString(10))
+                    .setPassword(RandomUtil.randomString(64))
+                    .setGender(RandomUtil.randomInt())
+                    .setUserType(RandomUtil.randomInt())
+                    .setDeptId(RandomUtil.randomInt())
+                    .setStatus(RandomUtil.randomInt())
+                    .setAdminFlag(RandomUtil.randomInt())
+                    .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
+                    .build();
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+        } else {
+            throw new RuntimeException("自定义异常！！！");
+        }
     }
 
 

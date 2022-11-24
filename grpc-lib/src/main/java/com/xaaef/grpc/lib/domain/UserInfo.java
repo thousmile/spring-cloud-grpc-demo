@@ -6,7 +6,7 @@ package com.xaaef.grpc.lib.domain;
 /**
  * Protobuf type {@code greet.UserInfo}
  */
-public  final class UserInfo extends
+public final class UserInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:greet.UserInfo)
     UserInfoOrBuilder {
@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private UserInfo() {
-    userId_ = 0L;
     tenantId_ = "";
     avatar_ = "";
     username_ = "";
@@ -24,140 +23,19 @@ private static final long serialVersionUID = 0L;
     email_ = "";
     nickname_ = "";
     password_ = "";
-    gender_ = 0;
-    userType_ = 0;
-    deptId_ = 0L;
-    status_ = 0;
-    adminFlag_ = 0;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new UserInfo();
   }
 
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
-  }
-  private UserInfo(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-
-            userId_ = input.readInt64();
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            tenantId_ = s;
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            avatar_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            username_ = s;
-            break;
-          }
-          case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            mobile_ = s;
-            break;
-          }
-          case 50: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            email_ = s;
-            break;
-          }
-          case 58: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            nickname_ = s;
-            break;
-          }
-          case 66: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            password_ = s;
-            break;
-          }
-          case 72: {
-
-            gender_ = input.readInt32();
-            break;
-          }
-          case 80: {
-
-            userType_ = input.readInt32();
-            break;
-          }
-          case 88: {
-
-            deptId_ = input.readInt64();
-            break;
-          }
-          case 96: {
-
-            status_ = input.readInt32();
-            break;
-          }
-          case 104: {
-
-            adminFlag_ = input.readInt32();
-            break;
-          }
-          case 114: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (expired_ != null) {
-              subBuilder = expired_.toBuilder();
-            }
-            expired_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(expired_);
-              expired_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
@@ -181,7 +59,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int64 userId = 1;</code>
+   * @return The userId.
    */
+  @java.lang.Override
   public long getUserId() {
     return userId_;
   }
@@ -195,7 +75,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string tenantId = 2;</code>
+   * @return The tenantId.
    */
+  @java.lang.Override
   public java.lang.String getTenantId() {
     java.lang.Object ref = tenantId_;
     if (ref instanceof java.lang.String) {
@@ -215,7 +97,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string tenantId = 2;</code>
+   * @return The bytes for tenantId.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getTenantIdBytes() {
     java.lang.Object ref = tenantId_;
@@ -239,7 +123,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string avatar = 3;</code>
+   * @return The avatar.
    */
+  @java.lang.Override
   public java.lang.String getAvatar() {
     java.lang.Object ref = avatar_;
     if (ref instanceof java.lang.String) {
@@ -259,7 +145,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string avatar = 3;</code>
+   * @return The bytes for avatar.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getAvatarBytes() {
     java.lang.Object ref = avatar_;
@@ -283,7 +171,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string username = 4;</code>
+   * @return The username.
    */
+  @java.lang.Override
   public java.lang.String getUsername() {
     java.lang.Object ref = username_;
     if (ref instanceof java.lang.String) {
@@ -303,7 +193,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string username = 4;</code>
+   * @return The bytes for username.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getUsernameBytes() {
     java.lang.Object ref = username_;
@@ -327,7 +219,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string mobile = 5;</code>
+   * @return The mobile.
    */
+  @java.lang.Override
   public java.lang.String getMobile() {
     java.lang.Object ref = mobile_;
     if (ref instanceof java.lang.String) {
@@ -347,7 +241,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string mobile = 5;</code>
+   * @return The bytes for mobile.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getMobileBytes() {
     java.lang.Object ref = mobile_;
@@ -371,7 +267,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string email = 6;</code>
+   * @return The email.
    */
+  @java.lang.Override
   public java.lang.String getEmail() {
     java.lang.Object ref = email_;
     if (ref instanceof java.lang.String) {
@@ -391,7 +289,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string email = 6;</code>
+   * @return The bytes for email.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getEmailBytes() {
     java.lang.Object ref = email_;
@@ -415,7 +315,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string nickname = 7;</code>
+   * @return The nickname.
    */
+  @java.lang.Override
   public java.lang.String getNickname() {
     java.lang.Object ref = nickname_;
     if (ref instanceof java.lang.String) {
@@ -435,7 +337,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string nickname = 7;</code>
+   * @return The bytes for nickname.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getNicknameBytes() {
     java.lang.Object ref = nickname_;
@@ -459,7 +363,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string password = 8;</code>
+   * @return The password.
    */
+  @java.lang.Override
   public java.lang.String getPassword() {
     java.lang.Object ref = password_;
     if (ref instanceof java.lang.String) {
@@ -479,7 +385,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string password = 8;</code>
+   * @return The bytes for password.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString
       getPasswordBytes() {
     java.lang.Object ref = password_;
@@ -503,7 +411,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 gender = 9;</code>
+   * @return The gender.
    */
+  @java.lang.Override
   public int getGender() {
     return gender_;
   }
@@ -517,7 +427,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 userType = 10;</code>
+   * @return The userType.
    */
+  @java.lang.Override
   public int getUserType() {
     return userType_;
   }
@@ -531,7 +443,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int64 deptId = 11;</code>
+   * @return The deptId.
    */
+  @java.lang.Override
   public long getDeptId() {
     return deptId_;
   }
@@ -545,7 +459,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 status = 12;</code>
+   * @return The status.
    */
+  @java.lang.Override
   public int getStatus() {
     return status_;
   }
@@ -559,7 +475,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 adminFlag = 13;</code>
+   * @return The adminFlag.
    */
+  @java.lang.Override
   public int getAdminFlag() {
     return adminFlag_;
   }
@@ -573,7 +491,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp expired = 14;</code>
+   * @return Whether the expired field is set.
    */
+  @java.lang.Override
   public boolean hasExpired() {
     return expired_ != null;
   }
@@ -584,7 +504,9 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp expired = 14;</code>
+   * @return The expired.
    */
+  @java.lang.Override
   public com.google.protobuf.Timestamp getExpired() {
     return expired_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : expired_;
   }
@@ -596,6 +518,7 @@ private static final long serialVersionUID = 0L;
    *
    * <code>.google.protobuf.Timestamp expired = 14;</code>
    */
+  @java.lang.Override
   public com.google.protobuf.TimestampOrBuilder getExpiredOrBuilder() {
     return getExpired();
   }
@@ -617,25 +540,25 @@ private static final long serialVersionUID = 0L;
     if (userId_ != 0L) {
       output.writeInt64(1, userId_);
     }
-    if (!getTenantIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tenantId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, tenantId_);
     }
-    if (!getAvatarBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(avatar_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, avatar_);
     }
-    if (!getUsernameBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, username_);
     }
-    if (!getMobileBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mobile_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, mobile_);
     }
-    if (!getEmailBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, email_);
     }
-    if (!getNicknameBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nickname_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 7, nickname_);
     }
-    if (!getPasswordBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 8, password_);
     }
     if (gender_ != 0) {
@@ -656,7 +579,7 @@ private static final long serialVersionUID = 0L;
     if (expired_ != null) {
       output.writeMessage(14, getExpired());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -669,25 +592,25 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(1, userId_);
     }
-    if (!getTenantIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tenantId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, tenantId_);
     }
-    if (!getAvatarBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(avatar_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, avatar_);
     }
-    if (!getUsernameBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, username_);
     }
-    if (!getMobileBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mobile_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, mobile_);
     }
-    if (!getEmailBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, email_);
     }
-    if (!getNicknameBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nickname_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, nickname_);
     }
-    if (!getPasswordBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, password_);
     }
     if (gender_ != 0) {
@@ -714,7 +637,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(14, getExpired());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -729,40 +652,39 @@ private static final long serialVersionUID = 0L;
     }
     com.xaaef.grpc.lib.domain.UserInfo other = (com.xaaef.grpc.lib.domain.UserInfo) obj;
 
-    boolean result = true;
-    result = result && (getUserId()
-        == other.getUserId());
-    result = result && getTenantId()
-        .equals(other.getTenantId());
-    result = result && getAvatar()
-        .equals(other.getAvatar());
-    result = result && getUsername()
-        .equals(other.getUsername());
-    result = result && getMobile()
-        .equals(other.getMobile());
-    result = result && getEmail()
-        .equals(other.getEmail());
-    result = result && getNickname()
-        .equals(other.getNickname());
-    result = result && getPassword()
-        .equals(other.getPassword());
-    result = result && (getGender()
-        == other.getGender());
-    result = result && (getUserType()
-        == other.getUserType());
-    result = result && (getDeptId()
-        == other.getDeptId());
-    result = result && (getStatus()
-        == other.getStatus());
-    result = result && (getAdminFlag()
-        == other.getAdminFlag());
-    result = result && (hasExpired() == other.hasExpired());
+    if (getUserId()
+        != other.getUserId()) return false;
+    if (!getTenantId()
+        .equals(other.getTenantId())) return false;
+    if (!getAvatar()
+        .equals(other.getAvatar())) return false;
+    if (!getUsername()
+        .equals(other.getUsername())) return false;
+    if (!getMobile()
+        .equals(other.getMobile())) return false;
+    if (!getEmail()
+        .equals(other.getEmail())) return false;
+    if (!getNickname()
+        .equals(other.getNickname())) return false;
+    if (!getPassword()
+        .equals(other.getPassword())) return false;
+    if (getGender()
+        != other.getGender()) return false;
+    if (getUserType()
+        != other.getUserType()) return false;
+    if (getDeptId()
+        != other.getDeptId()) return false;
+    if (getStatus()
+        != other.getStatus()) return false;
+    if (getAdminFlag()
+        != other.getAdminFlag()) return false;
+    if (hasExpired() != other.hasExpired()) return false;
     if (hasExpired()) {
-      result = result && getExpired()
-          .equals(other.getExpired());
+      if (!getExpired()
+          .equals(other.getExpired())) return false;
     }
-    result = result && unknownFields.equals(other.unknownFields);
-    return result;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+    return true;
   }
 
   @java.lang.Override
@@ -804,7 +726,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + EXPIRED_FIELD_NUMBER;
       hash = (53 * hash) + getExpired().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -921,18 +843,13 @@ private static final long serialVersionUID = 0L;
 
     // Construct using com.xaaef.grpc.lib.domain.UserInfo.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
@@ -1019,35 +936,35 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder clone() {
-      return (Builder) super.clone();
+      return super.clone();
     }
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return (Builder) super.setField(field, value);
+      return super.setField(field, value);
     }
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return (Builder) super.clearField(field);
+      return super.clearField(field);
     }
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return (Builder) super.clearOneof(oneof);
+      return super.clearOneof(oneof);
     }
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
-      return (Builder) super.setRepeatedField(field, index, value);
+      return super.setRepeatedField(field, index, value);
     }
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return (Builder) super.addRepeatedField(field, value);
+      return super.addRepeatedField(field, value);
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1110,7 +1027,7 @@ private static final long serialVersionUID = 0L;
       if (other.hasExpired()) {
         mergeExpired(other.getExpired());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -1125,17 +1042,102 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.xaaef.grpc.lib.domain.UserInfo parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              userId_ = input.readInt64();
+
+              break;
+            } // case 8
+            case 18: {
+              tenantId_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 18
+            case 26: {
+              avatar_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 26
+            case 34: {
+              username_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 34
+            case 42: {
+              mobile_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 42
+            case 50: {
+              email_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 50
+            case 58: {
+              nickname_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 58
+            case 66: {
+              password_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 66
+            case 72: {
+              gender_ = input.readInt32();
+
+              break;
+            } // case 72
+            case 80: {
+              userType_ = input.readInt32();
+
+              break;
+            } // case 80
+            case 88: {
+              deptId_ = input.readInt64();
+
+              break;
+            } // case 88
+            case 96: {
+              status_ = input.readInt32();
+
+              break;
+            } // case 96
+            case 104: {
+              adminFlag_ = input.readInt32();
+
+              break;
+            } // case 104
+            case 114: {
+              input.readMessage(
+                  getExpiredFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 114
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.xaaef.grpc.lib.domain.UserInfo) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
 
@@ -1147,7 +1149,9 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int64 userId = 1;</code>
+     * @return The userId.
      */
+    @java.lang.Override
     public long getUserId() {
       return userId_;
     }
@@ -1158,6 +1162,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int64 userId = 1;</code>
+     * @param value The userId to set.
+     * @return This builder for chaining.
      */
     public Builder setUserId(long value) {
       
@@ -1172,6 +1178,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int64 userId = 1;</code>
+     * @return This builder for chaining.
      */
     public Builder clearUserId() {
       
@@ -1188,6 +1195,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 2;</code>
+     * @return The tenantId.
      */
     public java.lang.String getTenantId() {
       java.lang.Object ref = tenantId_;
@@ -1208,6 +1216,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 2;</code>
+     * @return The bytes for tenantId.
      */
     public com.google.protobuf.ByteString
         getTenantIdBytes() {
@@ -1229,6 +1238,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 2;</code>
+     * @param value The tenantId to set.
+     * @return This builder for chaining.
      */
     public Builder setTenantId(
         java.lang.String value) {
@@ -1247,6 +1258,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 2;</code>
+     * @return This builder for chaining.
      */
     public Builder clearTenantId() {
       
@@ -1261,6 +1273,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string tenantId = 2;</code>
+     * @param value The bytes for tenantId to set.
+     * @return This builder for chaining.
      */
     public Builder setTenantIdBytes(
         com.google.protobuf.ByteString value) {
@@ -1282,6 +1296,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string avatar = 3;</code>
+     * @return The avatar.
      */
     public java.lang.String getAvatar() {
       java.lang.Object ref = avatar_;
@@ -1302,6 +1317,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string avatar = 3;</code>
+     * @return The bytes for avatar.
      */
     public com.google.protobuf.ByteString
         getAvatarBytes() {
@@ -1323,6 +1339,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string avatar = 3;</code>
+     * @param value The avatar to set.
+     * @return This builder for chaining.
      */
     public Builder setAvatar(
         java.lang.String value) {
@@ -1341,6 +1359,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string avatar = 3;</code>
+     * @return This builder for chaining.
      */
     public Builder clearAvatar() {
       
@@ -1355,6 +1374,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string avatar = 3;</code>
+     * @param value The bytes for avatar to set.
+     * @return This builder for chaining.
      */
     public Builder setAvatarBytes(
         com.google.protobuf.ByteString value) {
@@ -1376,6 +1397,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string username = 4;</code>
+     * @return The username.
      */
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
@@ -1396,6 +1418,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string username = 4;</code>
+     * @return The bytes for username.
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
@@ -1417,6 +1440,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string username = 4;</code>
+     * @param value The username to set.
+     * @return This builder for chaining.
      */
     public Builder setUsername(
         java.lang.String value) {
@@ -1435,6 +1460,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string username = 4;</code>
+     * @return This builder for chaining.
      */
     public Builder clearUsername() {
       
@@ -1449,6 +1475,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string username = 4;</code>
+     * @param value The bytes for username to set.
+     * @return This builder for chaining.
      */
     public Builder setUsernameBytes(
         com.google.protobuf.ByteString value) {
@@ -1470,6 +1498,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string mobile = 5;</code>
+     * @return The mobile.
      */
     public java.lang.String getMobile() {
       java.lang.Object ref = mobile_;
@@ -1490,6 +1519,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string mobile = 5;</code>
+     * @return The bytes for mobile.
      */
     public com.google.protobuf.ByteString
         getMobileBytes() {
@@ -1511,6 +1541,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string mobile = 5;</code>
+     * @param value The mobile to set.
+     * @return This builder for chaining.
      */
     public Builder setMobile(
         java.lang.String value) {
@@ -1529,6 +1561,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string mobile = 5;</code>
+     * @return This builder for chaining.
      */
     public Builder clearMobile() {
       
@@ -1543,6 +1576,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string mobile = 5;</code>
+     * @param value The bytes for mobile to set.
+     * @return This builder for chaining.
      */
     public Builder setMobileBytes(
         com.google.protobuf.ByteString value) {
@@ -1564,6 +1599,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string email = 6;</code>
+     * @return The email.
      */
     public java.lang.String getEmail() {
       java.lang.Object ref = email_;
@@ -1584,6 +1620,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string email = 6;</code>
+     * @return The bytes for email.
      */
     public com.google.protobuf.ByteString
         getEmailBytes() {
@@ -1605,6 +1642,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string email = 6;</code>
+     * @param value The email to set.
+     * @return This builder for chaining.
      */
     public Builder setEmail(
         java.lang.String value) {
@@ -1623,6 +1662,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string email = 6;</code>
+     * @return This builder for chaining.
      */
     public Builder clearEmail() {
       
@@ -1637,6 +1677,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string email = 6;</code>
+     * @param value The bytes for email to set.
+     * @return This builder for chaining.
      */
     public Builder setEmailBytes(
         com.google.protobuf.ByteString value) {
@@ -1658,6 +1700,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string nickname = 7;</code>
+     * @return The nickname.
      */
     public java.lang.String getNickname() {
       java.lang.Object ref = nickname_;
@@ -1678,6 +1721,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string nickname = 7;</code>
+     * @return The bytes for nickname.
      */
     public com.google.protobuf.ByteString
         getNicknameBytes() {
@@ -1699,6 +1743,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string nickname = 7;</code>
+     * @param value The nickname to set.
+     * @return This builder for chaining.
      */
     public Builder setNickname(
         java.lang.String value) {
@@ -1717,6 +1763,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string nickname = 7;</code>
+     * @return This builder for chaining.
      */
     public Builder clearNickname() {
       
@@ -1731,6 +1778,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string nickname = 7;</code>
+     * @param value The bytes for nickname to set.
+     * @return This builder for chaining.
      */
     public Builder setNicknameBytes(
         com.google.protobuf.ByteString value) {
@@ -1752,6 +1801,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string password = 8;</code>
+     * @return The password.
      */
     public java.lang.String getPassword() {
       java.lang.Object ref = password_;
@@ -1772,6 +1822,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string password = 8;</code>
+     * @return The bytes for password.
      */
     public com.google.protobuf.ByteString
         getPasswordBytes() {
@@ -1793,6 +1844,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string password = 8;</code>
+     * @param value The password to set.
+     * @return This builder for chaining.
      */
     public Builder setPassword(
         java.lang.String value) {
@@ -1811,6 +1864,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string password = 8;</code>
+     * @return This builder for chaining.
      */
     public Builder clearPassword() {
       
@@ -1825,6 +1879,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string password = 8;</code>
+     * @param value The bytes for password to set.
+     * @return This builder for chaining.
      */
     public Builder setPasswordBytes(
         com.google.protobuf.ByteString value) {
@@ -1846,7 +1902,9 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 gender = 9;</code>
+     * @return The gender.
      */
+    @java.lang.Override
     public int getGender() {
       return gender_;
     }
@@ -1857,6 +1915,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 gender = 9;</code>
+     * @param value The gender to set.
+     * @return This builder for chaining.
      */
     public Builder setGender(int value) {
       
@@ -1871,6 +1931,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 gender = 9;</code>
+     * @return This builder for chaining.
      */
     public Builder clearGender() {
       
@@ -1887,7 +1948,9 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 userType = 10;</code>
+     * @return The userType.
      */
+    @java.lang.Override
     public int getUserType() {
       return userType_;
     }
@@ -1898,6 +1961,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 userType = 10;</code>
+     * @param value The userType to set.
+     * @return This builder for chaining.
      */
     public Builder setUserType(int value) {
       
@@ -1912,6 +1977,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 userType = 10;</code>
+     * @return This builder for chaining.
      */
     public Builder clearUserType() {
       
@@ -1928,7 +1994,9 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int64 deptId = 11;</code>
+     * @return The deptId.
      */
+    @java.lang.Override
     public long getDeptId() {
       return deptId_;
     }
@@ -1939,6 +2007,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int64 deptId = 11;</code>
+     * @param value The deptId to set.
+     * @return This builder for chaining.
      */
     public Builder setDeptId(long value) {
       
@@ -1953,6 +2023,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int64 deptId = 11;</code>
+     * @return This builder for chaining.
      */
     public Builder clearDeptId() {
       
@@ -1969,7 +2040,9 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 status = 12;</code>
+     * @return The status.
      */
+    @java.lang.Override
     public int getStatus() {
       return status_;
     }
@@ -1980,6 +2053,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 status = 12;</code>
+     * @param value The status to set.
+     * @return This builder for chaining.
      */
     public Builder setStatus(int value) {
       
@@ -1994,6 +2069,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 status = 12;</code>
+     * @return This builder for chaining.
      */
     public Builder clearStatus() {
       
@@ -2010,7 +2086,9 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 adminFlag = 13;</code>
+     * @return The adminFlag.
      */
+    @java.lang.Override
     public int getAdminFlag() {
       return adminFlag_;
     }
@@ -2021,6 +2099,8 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 adminFlag = 13;</code>
+     * @param value The adminFlag to set.
+     * @return This builder for chaining.
      */
     public Builder setAdminFlag(int value) {
       
@@ -2035,6 +2115,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 adminFlag = 13;</code>
+     * @return This builder for chaining.
      */
     public Builder clearAdminFlag() {
       
@@ -2043,7 +2124,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.Timestamp expired_ = null;
+    private com.google.protobuf.Timestamp expired_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> expiredBuilder_;
     /**
@@ -2053,6 +2134,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp expired = 14;</code>
+     * @return Whether the expired field is set.
      */
     public boolean hasExpired() {
       return expiredBuilder_ != null || expired_ != null;
@@ -2064,6 +2146,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp expired = 14;</code>
+     * @return The expired.
      */
     public com.google.protobuf.Timestamp getExpired() {
       if (expiredBuilder_ == null) {
@@ -2207,7 +2290,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
+      return super.setUnknownFields(unknownFields);
     }
 
     @java.lang.Override
@@ -2237,7 +2320,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new UserInfo(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

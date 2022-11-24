@@ -14,6 +14,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>int64 userId = 1;</code>
+   * @return The userId.
    */
   long getUserId();
 
@@ -24,6 +25,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string tenantId = 2;</code>
+   * @return The tenantId.
    */
   java.lang.String getTenantId();
   /**
@@ -33,6 +35,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string tenantId = 2;</code>
+   * @return The bytes for tenantId.
    */
   com.google.protobuf.ByteString
       getTenantIdBytes();
@@ -44,6 +47,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string avatar = 3;</code>
+   * @return The avatar.
    */
   java.lang.String getAvatar();
   /**
@@ -53,6 +57,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string avatar = 3;</code>
+   * @return The bytes for avatar.
    */
   com.google.protobuf.ByteString
       getAvatarBytes();
@@ -64,6 +69,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string username = 4;</code>
+   * @return The username.
    */
   java.lang.String getUsername();
   /**
@@ -73,6 +79,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string username = 4;</code>
+   * @return The bytes for username.
    */
   com.google.protobuf.ByteString
       getUsernameBytes();
@@ -84,6 +91,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string mobile = 5;</code>
+   * @return The mobile.
    */
   java.lang.String getMobile();
   /**
@@ -93,6 +101,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string mobile = 5;</code>
+   * @return The bytes for mobile.
    */
   com.google.protobuf.ByteString
       getMobileBytes();
@@ -104,6 +113,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string email = 6;</code>
+   * @return The email.
    */
   java.lang.String getEmail();
   /**
@@ -113,6 +123,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string email = 6;</code>
+   * @return The bytes for email.
    */
   com.google.protobuf.ByteString
       getEmailBytes();
@@ -124,6 +135,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string nickname = 7;</code>
+   * @return The nickname.
    */
   java.lang.String getNickname();
   /**
@@ -133,6 +145,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string nickname = 7;</code>
+   * @return The bytes for nickname.
    */
   com.google.protobuf.ByteString
       getNicknameBytes();
@@ -144,6 +157,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string password = 8;</code>
+   * @return The password.
    */
   java.lang.String getPassword();
   /**
@@ -153,6 +167,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>string password = 8;</code>
+   * @return The bytes for password.
    */
   com.google.protobuf.ByteString
       getPasswordBytes();
@@ -164,6 +179,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>int32 gender = 9;</code>
+   * @return The gender.
    */
   int getGender();
 
@@ -174,6 +190,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>int32 userType = 10;</code>
+   * @return The userType.
    */
   int getUserType();
 
@@ -184,6 +201,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>int64 deptId = 11;</code>
+   * @return The deptId.
    */
   long getDeptId();
 
@@ -194,6 +212,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>int32 status = 12;</code>
+   * @return The status.
    */
   int getStatus();
 
@@ -204,6 +223,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>int32 adminFlag = 13;</code>
+   * @return The adminFlag.
    */
   int getAdminFlag();
 
@@ -214,6 +234,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp expired = 14;</code>
+   * @return Whether the expired field is set.
    */
   boolean hasExpired();
   /**
@@ -223,6 +244,7 @@ public interface UserInfoOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp expired = 14;</code>
+   * @return The expired.
    */
   com.google.protobuf.Timestamp getExpired();
   /**
