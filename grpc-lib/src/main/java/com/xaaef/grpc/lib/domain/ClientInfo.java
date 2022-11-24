@@ -4,11 +4,11 @@
 package com.xaaef.grpc.lib.domain;
 
 /**
- * Protobuf type {@code greet.ClientInfo}
+ * Protobuf type {@code com.xaaef.ClientInfo}
  */
 public final class ClientInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:greet.ClientInfo)
+    // @@protoc_insertion_point(message_implements:com.xaaef.ClientInfo)
     ClientInfoOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use ClientInfo.newBuilder() to construct.
@@ -41,13 +41,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_ClientInfo_descriptor;
+    return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_ClientInfo_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_ClientInfo_fieldAccessorTable
+    return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_ClientInfo_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.xaaef.grpc.lib.domain.ClientInfo.class, com.xaaef.grpc.lib.domain.ClientInfo.Builder.class);
   }
@@ -764,21 +764,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code greet.ClientInfo}
+   * Protobuf type {@code com.xaaef.ClientInfo}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:greet.ClientInfo)
+      // @@protoc_insertion_point(builder_implements:com.xaaef.ClientInfo)
       com.xaaef.grpc.lib.domain.ClientInfoOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_ClientInfo_descriptor;
+      return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_ClientInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_ClientInfo_fieldAccessorTable
+      return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_ClientInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.xaaef.grpc.lib.domain.ClientInfo.class, com.xaaef.grpc.lib.domain.ClientInfo.Builder.class);
     }
@@ -822,7 +822,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.xaaef.grpc.lib.domain.Domain.internal_static_greet_ClientInfo_descriptor;
+      return com.xaaef.grpc.lib.domain.Domain.internal_static_com_xaaef_ClientInfo_descriptor;
     }
 
     @java.lang.Override
@@ -2074,10 +2074,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:greet.ClientInfo)
+    // @@protoc_insertion_point(builder_scope:com.xaaef.ClientInfo)
   }
 
-  // @@protoc_insertion_point(class_scope:greet.ClientInfo)
+  // @@protoc_insertion_point(class_scope:com.xaaef.ClientInfo)
   private static final com.xaaef.grpc.lib.domain.ClientInfo DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new com.xaaef.grpc.lib.domain.ClientInfo();

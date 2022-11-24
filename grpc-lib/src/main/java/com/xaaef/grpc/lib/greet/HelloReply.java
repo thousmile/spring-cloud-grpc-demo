@@ -8,11 +8,11 @@ package com.xaaef.grpc.lib.greet;
  * The response message containing the greetings.
  * </pre>
  *
- * Protobuf type {@code greet.HelloReply}
+ * Protobuf type {@code com.xaaef.HelloReply}
  */
 public final class HelloReply extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:greet.HelloReply)
+    // @@protoc_insertion_point(message_implements:com.xaaef.HelloReply)
     HelloReplyOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use HelloReply.newBuilder() to construct.
@@ -37,13 +37,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.xaaef.grpc.lib.greet.Greet.internal_static_greet_HelloReply_descriptor;
+    return com.xaaef.grpc.lib.greet.Greet.internal_static_com_xaaef_HelloReply_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.xaaef.grpc.lib.greet.Greet.internal_static_greet_HelloReply_fieldAccessorTable
+    return com.xaaef.grpc.lib.greet.Greet.internal_static_com_xaaef_HelloReply_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.xaaef.grpc.lib.greet.HelloReply.class, com.xaaef.grpc.lib.greet.HelloReply.Builder.class);
   }
@@ -245,21 +245,21 @@ private static final long serialVersionUID = 0L;
    * The response message containing the greetings.
    * </pre>
    *
-   * Protobuf type {@code greet.HelloReply}
+   * Protobuf type {@code com.xaaef.HelloReply}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:greet.HelloReply)
+      // @@protoc_insertion_point(builder_implements:com.xaaef.HelloReply)
       com.xaaef.grpc.lib.greet.HelloReplyOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.xaaef.grpc.lib.greet.Greet.internal_static_greet_HelloReply_descriptor;
+      return com.xaaef.grpc.lib.greet.Greet.internal_static_com_xaaef_HelloReply_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.xaaef.grpc.lib.greet.Greet.internal_static_greet_HelloReply_fieldAccessorTable
+      return com.xaaef.grpc.lib.greet.Greet.internal_static_com_xaaef_HelloReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.xaaef.grpc.lib.greet.HelloReply.class, com.xaaef.grpc.lib.greet.HelloReply.Builder.class);
     }
@@ -285,7 +285,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.xaaef.grpc.lib.greet.Greet.internal_static_greet_HelloReply_descriptor;
+      return com.xaaef.grpc.lib.greet.Greet.internal_static_com_xaaef_HelloReply_descriptor;
     }
 
     @java.lang.Override
@@ -493,10 +493,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:greet.HelloReply)
+    // @@protoc_insertion_point(builder_scope:com.xaaef.HelloReply)
   }
 
-  // @@protoc_insertion_point(class_scope:greet.HelloReply)
+  // @@protoc_insertion_point(class_scope:com.xaaef.HelloReply)
   private static final com.xaaef.grpc.lib.greet.HelloReply DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new com.xaaef.grpc.lib.greet.HelloReply();
