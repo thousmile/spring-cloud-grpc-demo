@@ -4,7 +4,7 @@ import public "google/protobuf/timestamp.proto";
 import public "google/protobuf/wrappers.proto";
 import public "domain.proto";
 
-package greet;
+package com.xaaef;
 
 option csharp_namespace = "GrpcService1";
 

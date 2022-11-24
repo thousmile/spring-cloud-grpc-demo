@@ -22,18 +22,18 @@
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <maven-compiler.version>3.8.1</maven-compiler.version>
+        <maven-compiler.version>3.10.1</maven-compiler.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <os.plugin.version>1.7.1</os.plugin.version>
-        <grpc.version>1.51.0</grpc.version>
         <protobuf.plugin.version>0.6.1</protobuf.plugin.version>
+        <grpc.version>1.51.0</grpc.version>
+        <jackson.version>2.13.4</jackson.version>
+        <msgpack.version>0.9.3</msgpack.version>
         <protobuf.version>3.21.9</protobuf.version>
 
         <hutool.version>5.8.10</hutool.version>
-
-        <transmittable.version>2.14.2</transmittable.version>
 
         <devh-grpc.version>2.14.0.RELEASE</devh-grpc.version>
         <spring-boot.version>2.6.13</spring-boot.version>
