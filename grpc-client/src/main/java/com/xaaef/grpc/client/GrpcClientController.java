@@ -4,9 +4,9 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.google.protobuf.util.Timestamps;
 import com.xaaef.grpc.lib.context.GrpcContext;
-import com.xaaef.grpc.lib.domain.ClientInfo;
-import com.xaaef.grpc.lib.domain.TokenInfo;
-import com.xaaef.grpc.lib.domain.UserInfo;
+import com.xaaef.grpc.lib.pb.ClientInfo;
+import com.xaaef.grpc.lib.pb.TokenInfo;
+import com.xaaef.grpc.lib.pb.UserInfo;
 import com.xaaef.grpc.lib.rpc.RpcGreeterService;
 import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.ProtobufUtils;
@@ -91,18 +91,16 @@ public class GrpcClientController {
     @GetMapping("getUserInfo")
     public Map<String, Object> getUserInfo(@RequestParam String name) {
         initToken();
-        var userInfo = greeterService.getUserInfo(name);
-        var json = ProtobufUtils.toJson(userInfo);
-        return JsonUtils.toMap(json, String.class, Object.class);
+        var val1 = greeterService.getUserInfo(name);
+        return JsonUtils.toMap(ProtobufUtils.toJson(val1), String.class, Object.class);
     }
 
 
     @GetMapping("getTokenInfo")
     public Map<String, Object> getTokenInfo() {
         initToken();
-        var tokenInfo = GrpcContext.getTokenInfo();
-        var json = ProtobufUtils.toJson(tokenInfo);
-        return JsonUtils.toMap(json, String.class, Object.class);
+        var val1 = GrpcContext.getTokenInfo();
+        return JsonUtils.toMap(ProtobufUtils.toJson(val1), String.class, Object.class);
     }
 
 

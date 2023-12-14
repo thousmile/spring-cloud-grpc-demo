@@ -1,11 +1,10 @@
 package com.xaaef.grpc.lib.rpc.impl;
 
-
 import cn.hutool.core.util.StrUtil;
 import com.google.protobuf.StringValue;
-import com.xaaef.grpc.lib.domain.UserInfo;
-import com.xaaef.grpc.lib.greet.GreeterGrpc;
-import com.xaaef.grpc.lib.greet.HelloRequest;
+import com.xaaef.grpc.lib.pb.GreeterGrpc;
+import com.xaaef.grpc.lib.pb.HelloRequest;
+import com.xaaef.grpc.lib.pb.UserInfo;
 import com.xaaef.grpc.lib.rpc.RpcGreeterService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.grpc.StatusRuntimeException;

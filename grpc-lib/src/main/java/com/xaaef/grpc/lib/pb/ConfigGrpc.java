@@ -1,18 +1,18 @@
-package com.xaaef.grpc.lib.config;
+package com.xaaef.grpc.lib.pb;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.51.0)",
+    value = "by gRPC proto compiler (version 1.59.1)",
     comments = "Source: config.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ConfigGrpc {
 
   private ConfigGrpc() {}
 
-  public static final String SERVICE_NAME = "com.xaaef.Config";
+  public static final java.lang.String SERVICE_NAME = "com.xaaef.Config";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
@@ -108,6 +108,68 @@ public final class ConfigGrpc {
     return getGetNumberValueMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+      com.google.protobuf.DoubleValue> getGetFloatValueMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetFloatValue",
+      requestType = com.google.protobuf.StringValue.class,
+      responseType = com.google.protobuf.DoubleValue.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+      com.google.protobuf.DoubleValue> getGetFloatValueMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.google.protobuf.DoubleValue> getGetFloatValueMethod;
+    if ((getGetFloatValueMethod = ConfigGrpc.getGetFloatValueMethod) == null) {
+      synchronized (ConfigGrpc.class) {
+        if ((getGetFloatValueMethod = ConfigGrpc.getGetFloatValueMethod) == null) {
+          ConfigGrpc.getGetFloatValueMethod = getGetFloatValueMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.google.protobuf.DoubleValue>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetFloatValue"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.StringValue.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.DoubleValue.getDefaultInstance()))
+              .setSchemaDescriptor(new ConfigMethodDescriptorSupplier("GetFloatValue"))
+              .build();
+        }
+      }
+    }
+    return getGetFloatValueMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+      com.google.protobuf.Timestamp> getGetTimestampValueMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetTimestampValue",
+      requestType = com.google.protobuf.StringValue.class,
+      responseType = com.google.protobuf.Timestamp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+      com.google.protobuf.Timestamp> getGetTimestampValueMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.google.protobuf.Timestamp> getGetTimestampValueMethod;
+    if ((getGetTimestampValueMethod = ConfigGrpc.getGetTimestampValueMethod) == null) {
+      synchronized (ConfigGrpc.class) {
+        if ((getGetTimestampValueMethod = ConfigGrpc.getGetTimestampValueMethod) == null) {
+          ConfigGrpc.getGetTimestampValueMethod = getGetTimestampValueMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.google.protobuf.Timestamp>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetTimestampValue"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.StringValue.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Timestamp.getDefaultInstance()))
+              .setSchemaDescriptor(new ConfigMethodDescriptorSupplier("GetTimestampValue"))
+              .build();
+        }
+      }
+    }
+    return getGetTimestampValueMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -154,59 +216,60 @@ public final class ConfigGrpc {
 
   /**
    */
-  public static abstract class ConfigImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void getStringValue(com.google.protobuf.StringValue request,
+    default void getStringValue(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.google.protobuf.StringValue> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetStringValueMethod(), responseObserver);
     }
 
     /**
      */
-    public void getBoolValue(com.google.protobuf.StringValue request,
+    default void getBoolValue(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBoolValueMethod(), responseObserver);
     }
 
     /**
      */
-    public void getNumberValue(com.google.protobuf.StringValue request,
+    default void getNumberValue(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetNumberValueMethod(), responseObserver);
     }
 
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetStringValueMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.google.protobuf.StringValue,
-                com.google.protobuf.StringValue>(
-                  this, METHODID_GET_STRING_VALUE)))
-          .addMethod(
-            getGetBoolValueMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.google.protobuf.StringValue,
-                com.google.protobuf.BoolValue>(
-                  this, METHODID_GET_BOOL_VALUE)))
-          .addMethod(
-            getGetNumberValueMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.google.protobuf.StringValue,
-                com.google.protobuf.Int64Value>(
-                  this, METHODID_GET_NUMBER_VALUE)))
-          .build();
+    /**
+     */
+    default void getFloatValue(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.DoubleValue> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetFloatValueMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void getTimestampValue(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Timestamp> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetTimestampValueMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Config.
    */
-  public static final class ConfigStub extends io.grpc.stub.AbstractAsyncStub<ConfigStub> {
+  public static abstract class ConfigImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return ConfigGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Config.
+   */
+  public static final class ConfigStub
+      extends io.grpc.stub.AbstractAsyncStub<ConfigStub> {
     private ConfigStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -241,11 +304,29 @@ public final class ConfigGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetNumberValueMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getFloatValue(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.DoubleValue> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetFloatValueMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getTimestampValue(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Timestamp> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetTimestampValueMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Config.
    */
-  public static final class ConfigBlockingStub extends io.grpc.stub.AbstractBlockingStub<ConfigBlockingStub> {
+  public static final class ConfigBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<ConfigBlockingStub> {
     private ConfigBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -277,11 +358,27 @@ public final class ConfigGrpc {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetNumberValueMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.google.protobuf.DoubleValue getFloatValue(com.google.protobuf.StringValue request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetFloatValueMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Timestamp getTimestampValue(com.google.protobuf.StringValue request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetTimestampValueMethod(), getCallOptions(), request);
+    }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Config.
    */
-  public static final class ConfigFutureStub extends io.grpc.stub.AbstractFutureStub<ConfigFutureStub> {
+  public static final class ConfigFutureStub
+      extends io.grpc.stub.AbstractFutureStub<ConfigFutureStub> {
     private ConfigFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -316,21 +413,39 @@ public final class ConfigGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetNumberValueMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.DoubleValue> getFloatValue(
+        com.google.protobuf.StringValue request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetFloatValueMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Timestamp> getTimestampValue(
+        com.google.protobuf.StringValue request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetTimestampValueMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_GET_STRING_VALUE = 0;
   private static final int METHODID_GET_BOOL_VALUE = 1;
   private static final int METHODID_GET_NUMBER_VALUE = 2;
+  private static final int METHODID_GET_FLOAT_VALUE = 3;
+  private static final int METHODID_GET_TIMESTAMP_VALUE = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final ConfigImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(ConfigImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -351,6 +466,14 @@ public final class ConfigGrpc {
           serviceImpl.getNumberValue((com.google.protobuf.StringValue) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value>) responseObserver);
           break;
+        case METHODID_GET_FLOAT_VALUE:
+          serviceImpl.getFloatValue((com.google.protobuf.StringValue) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.DoubleValue>) responseObserver);
+          break;
+        case METHODID_GET_TIMESTAMP_VALUE:
+          serviceImpl.getTimestampValue((com.google.protobuf.StringValue) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Timestamp>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -367,13 +490,53 @@ public final class ConfigGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetStringValueMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.StringValue,
+              com.google.protobuf.StringValue>(
+                service, METHODID_GET_STRING_VALUE)))
+        .addMethod(
+          getGetBoolValueMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.StringValue,
+              com.google.protobuf.BoolValue>(
+                service, METHODID_GET_BOOL_VALUE)))
+        .addMethod(
+          getGetNumberValueMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.StringValue,
+              com.google.protobuf.Int64Value>(
+                service, METHODID_GET_NUMBER_VALUE)))
+        .addMethod(
+          getGetFloatValueMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.StringValue,
+              com.google.protobuf.DoubleValue>(
+                service, METHODID_GET_FLOAT_VALUE)))
+        .addMethod(
+          getGetTimestampValueMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.StringValue,
+              com.google.protobuf.Timestamp>(
+                service, METHODID_GET_TIMESTAMP_VALUE)))
+        .build();
+  }
+
   private static abstract class ConfigBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     ConfigBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.xaaef.grpc.lib.config.ConfigOuterClass.getDescriptor();
+      return com.xaaef.grpc.lib.pb.ConfigOuterClass.getDescriptor();
     }
 
     @java.lang.Override
@@ -390,9 +553,9 @@ public final class ConfigGrpc {
   private static final class ConfigMethodDescriptorSupplier
       extends ConfigBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    ConfigMethodDescriptorSupplier(String methodName) {
+    ConfigMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
@@ -415,6 +578,8 @@ public final class ConfigGrpc {
               .addMethod(getGetStringValueMethod())
               .addMethod(getGetBoolValueMethod())
               .addMethod(getGetNumberValueMethod())
+              .addMethod(getGetFloatValueMethod())
+              .addMethod(getGetTimestampValueMethod())
               .build();
         }
       }

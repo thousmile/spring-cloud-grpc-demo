@@ -1,7 +1,6 @@
 package com.xaaef.grpc.lib.rpc;
 
-
-import com.xaaef.grpc.lib.domain.UserInfo;
+import com.xaaef.grpc.lib.pb.UserInfo;
 
 /**
  * rpc 接口

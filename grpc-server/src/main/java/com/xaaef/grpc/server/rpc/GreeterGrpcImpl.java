@@ -2,13 +2,12 @@ package com.xaaef.grpc.server.rpc;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import com.google.protobuf.BoolValue;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.util.Timestamps;
-import com.xaaef.grpc.lib.domain.UserInfo;
-import com.xaaef.grpc.lib.greet.GreeterGrpc;
-import com.xaaef.grpc.lib.greet.HelloReply;
-import com.xaaef.grpc.lib.greet.HelloRequest;
+import com.xaaef.grpc.lib.pb.GreeterGrpc;
+import com.xaaef.grpc.lib.pb.HelloReply;
+import com.xaaef.grpc.lib.pb.HelloRequest;
+import com.xaaef.grpc.lib.pb.UserInfo;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +34,7 @@ import java.util.UUID;
 public class GreeterGrpcImpl extends GreeterGrpc.GreeterImplBase {
 
     private final Environment env;
+
 
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {

@@ -1,8 +1,8 @@
 package com.xaaef.grpc.lib;
 
 
-import com.xaaef.grpc.lib.interceptor.TokenClientInterceptor;
-import com.xaaef.grpc.lib.interceptor.TokenServerInterceptor;
+import com.xaaef.grpc.lib.interceptor.GlobalTokenClientInterceptor;
+import com.xaaef.grpc.lib.interceptor.GlobalTokenServerInterceptor;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,8 +25,8 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @AllArgsConstructor
 @Import({
-        TokenServerInterceptor.class,
-        TokenClientInterceptor.class
+        GlobalTokenServerInterceptor.class,
+        GlobalTokenClientInterceptor.class
 })
 @ComponentScan("com.xaaef.grpc.lib.rpc.impl")
 public class GrpcApiAutoConfiguration {

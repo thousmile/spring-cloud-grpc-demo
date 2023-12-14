@@ -1,6 +1,6 @@
 package com.xaaef.grpc.lib.context;
 
-import com.xaaef.grpc.lib.domain.TokenInfo;
+import com.xaaef.grpc.lib.pb.TokenInfo;
 import org.springframework.core.NamedInheritableThreadLocal;
 import org.springframework.util.StringUtils;
 

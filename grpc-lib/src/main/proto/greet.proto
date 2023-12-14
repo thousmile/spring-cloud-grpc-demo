@@ -7,13 +7,9 @@ import public "domain.proto";
 package com.xaaef;
 
 option csharp_namespace = "GrpcService1";
-
-option go_package = ".;message";
-
+option go_package = "./pb;greet";
 option java_multiple_files = true;
-
-option java_package = "com.xaaef.grpc.lib.greet";
-
+option java_package = "com.xaaef.grpc.lib.pb";
 
 
 service Greeter {

@@ -32,6 +32,7 @@ grpc:
       keep-alive-without-calls: true
 
 
+
 info:
   app:
     name: ${spring.application.name}

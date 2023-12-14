@@ -6,12 +6,9 @@ import public "google/protobuf/wrappers.proto";
 package com.xaaef;
 
 option csharp_namespace = "GrpcService1";
-
-option go_package = ".;message";
-
+option go_package = "./pb;config";
 option java_multiple_files = true;
-
-option java_package = "com.xaaef.grpc.lib.config";
+option java_package = "com.xaaef.grpc.lib.pb";
 
 service Config {
 
@@ -20,6 +17,10 @@ service Config {
   rpc GetBoolValue (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
 
   rpc GetNumberValue (google.protobuf.StringValue) returns (google.protobuf.Int64Value);
+
+  rpc GetFloatValue (google.protobuf.StringValue) returns (google.protobuf.DoubleValue);
+
+  rpc GetTimestampValue (google.protobuf.StringValue) returns (google.protobuf.Timestamp);
 
 }
 

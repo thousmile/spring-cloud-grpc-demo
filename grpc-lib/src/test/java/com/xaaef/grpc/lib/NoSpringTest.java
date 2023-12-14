@@ -2,16 +2,13 @@ package com.xaaef.grpc.lib;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
-import com.google.protobuf.Descriptors;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Parser;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.util.Timestamps;
-import com.xaaef.grpc.lib.domain.ClientInfo;
-import com.xaaef.grpc.lib.domain.TokenInfo;
-import com.xaaef.grpc.lib.domain.UserInfo;
+import com.xaaef.grpc.lib.pb.ClientInfo;
+import com.xaaef.grpc.lib.pb.TokenInfo;
+import com.xaaef.grpc.lib.pb.UserInfo;
 import com.xaaef.grpc.lib.util.JsonUtils;
 import lombok.*;
 import org.junit.jupiter.api.Test;
@@ -20,13 +17,12 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import static com.xaaef.grpc.lib.util.ProtobufUtils.toBytes;
 import static com.xaaef.grpc.lib.util.ProtobufUtils.toPojo;
 
 
-public class NoSpring {
+public class NoSpringTest {
 
     @Test
     public void test1() {

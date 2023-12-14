@@ -3,8 +3,8 @@ package com.xaaef.grpc.lib.interceptor;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.xaaef.grpc.lib.context.GrpcContext;
-import com.xaaef.grpc.lib.domain.TokenInfo;
 import com.xaaef.grpc.lib.dto.CustomMetadata;
+import com.xaaef.grpc.lib.pb.TokenInfo;
 import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.MsgpackUtils;
 import com.xaaef.grpc.lib.util.ProtobufUtils;
@@ -32,7 +32,7 @@ import static io.grpc.Metadata.*;
 
 @Slf4j
 @GrpcGlobalServerInterceptor
-public class TokenServerInterceptor implements ServerInterceptor {
+public class GlobalTokenServerInterceptor implements ServerInterceptor {
 
     // 租户ID string 格式
     static final Metadata.Key<String> TENANT_ID = Metadata.Key.of("tenantId", ASCII_STRING_MARSHALLER);
@@ -40,8 +40,8 @@ public class TokenServerInterceptor implements ServerInterceptor {
     // token 信息 protobuf 格式
     static final Metadata.Key<TokenInfo> TOKEN_INFO = ProtoUtils.keyForProto(TokenInfo.getDefaultInstance());
 
-    // token 信息 二进制 格式 , name 后缀必须是 -bin
-    static final Metadata.Key<byte[]> TOKEN_INFO_BYTES = Metadata.Key.of("customMetadata" + BINARY_HEADER_SUFFIX, BINARY_BYTE_MARSHALLER);
+    // 二进制 格式 , name 后缀必须是 -bin
+    static final Metadata.Key<byte[]> CUSTOM_BINARY = Metadata.Key.of("custom" + BINARY_HEADER_SUFFIX, BINARY_BYTE_MARSHALLER);
 
 
     @Override
@@ -78,14 +78,16 @@ public class TokenServerInterceptor implements ServerInterceptor {
         log.debug("TokenInfo Json : \n{}", print);
 
         // 获取 token 信息 二进制 格式
-        var bytes = headers.get(TOKEN_INFO_BYTES);
+        var bytes = headers.get(CUSTOM_BINARY);
         if (ArrayUtil.isNotEmpty(bytes)) {
             var customMetadata = MsgpackUtils.toPojo(bytes, CustomMetadata.class);
             log.debug("Custom Metadata: \n{}", JsonUtils.toFormatJson(customMetadata));
         }
 
+
         try {
             var delegate = next.startCall(call, headers);
+
             return new ForwardingServerCallListener.SimpleForwardingServerCallListener<ReqT>(delegate) {
 
                 @Override

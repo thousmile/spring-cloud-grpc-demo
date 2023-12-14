@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.xaaef.grpc.lib.interceptor.TokenServerInterceptor.*;
+import static com.xaaef.grpc.lib.interceptor.GlobalTokenServerInterceptor.*;
 
 
 /**
@@ -34,7 +34,7 @@ import static com.xaaef.grpc.lib.interceptor.TokenServerInterceptor.*;
 
 @Slf4j
 @GrpcGlobalClientInterceptor
-public class TokenClientInterceptor implements ClientInterceptor {
+public class GlobalTokenClientInterceptor implements ClientInterceptor {
 
 
     @Override
@@ -54,30 +54,22 @@ public class TokenClientInterceptor implements ClientInterceptor {
                     // 添加 租户ID string 类型
                     headers.put(TENANT_ID, tenantId);
                 }
-
                 if (Objects.nonNull(tokenInfo)) {
                     // 添加 token 信息 protobuf 格式
                     headers.put(TOKEN_INFO, tokenInfo);
                 }
-
-                // 添加 元数据 二进制 格式
-                headers.put(TOKEN_INFO_BYTES, randomBytes());
-
+                // 添加 自定义 二进制 格式
+                headers.put(CUSTOM_BINARY, randomBytes());
                 super.start(new ForwardingClientCallListener.SimpleForwardingClientCallListener<RespT>(responseListener) {
-
                     @Override
                     public void onClose(Status status, Metadata trailers) {
                         long time = System.currentTimeMillis() - start;
                         log.info("[grpc] {} time consuming: {} ms", methodDescriptor.getFullMethodName(), time);
                         super.onClose(status, trailers);
                     }
-
                 }, headers);
-
             }
-
         };
-
     }
 
 

@@ -1,43 +1,43 @@
-package com.xaaef.grpc.lib.greet;
+package com.xaaef.grpc.lib.pb;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.51.0)",
+    value = "by gRPC proto compiler (version 1.59.1)",
     comments = "Source: greet.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class GreeterGrpc {
 
   private GreeterGrpc() {}
 
-  public static final String SERVICE_NAME = "com.xaaef.Greeter";
+  public static final java.lang.String SERVICE_NAME = "com.xaaef.Greeter";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.xaaef.grpc.lib.greet.HelloRequest,
-      com.xaaef.grpc.lib.greet.HelloReply> getSayHelloMethod;
+  private static volatile io.grpc.MethodDescriptor<com.xaaef.grpc.lib.pb.HelloRequest,
+      com.xaaef.grpc.lib.pb.HelloReply> getSayHelloMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SayHello",
-      requestType = com.xaaef.grpc.lib.greet.HelloRequest.class,
-      responseType = com.xaaef.grpc.lib.greet.HelloReply.class,
+      requestType = com.xaaef.grpc.lib.pb.HelloRequest.class,
+      responseType = com.xaaef.grpc.lib.pb.HelloReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.xaaef.grpc.lib.greet.HelloRequest,
-      com.xaaef.grpc.lib.greet.HelloReply> getSayHelloMethod() {
-    io.grpc.MethodDescriptor<com.xaaef.grpc.lib.greet.HelloRequest, com.xaaef.grpc.lib.greet.HelloReply> getSayHelloMethod;
+  public static io.grpc.MethodDescriptor<com.xaaef.grpc.lib.pb.HelloRequest,
+      com.xaaef.grpc.lib.pb.HelloReply> getSayHelloMethod() {
+    io.grpc.MethodDescriptor<com.xaaef.grpc.lib.pb.HelloRequest, com.xaaef.grpc.lib.pb.HelloReply> getSayHelloMethod;
     if ((getSayHelloMethod = GreeterGrpc.getSayHelloMethod) == null) {
       synchronized (GreeterGrpc.class) {
         if ((getSayHelloMethod = GreeterGrpc.getSayHelloMethod) == null) {
           GreeterGrpc.getSayHelloMethod = getSayHelloMethod =
-              io.grpc.MethodDescriptor.<com.xaaef.grpc.lib.greet.HelloRequest, com.xaaef.grpc.lib.greet.HelloReply>newBuilder()
+              io.grpc.MethodDescriptor.<com.xaaef.grpc.lib.pb.HelloRequest, com.xaaef.grpc.lib.pb.HelloReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SayHello"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.xaaef.grpc.lib.greet.HelloRequest.getDefaultInstance()))
+                  com.xaaef.grpc.lib.pb.HelloRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.xaaef.grpc.lib.greet.HelloReply.getDefaultInstance()))
+                  com.xaaef.grpc.lib.pb.HelloReply.getDefaultInstance()))
               .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("SayHello"))
               .build();
         }
@@ -47,28 +47,28 @@ public final class GreeterGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
-      com.xaaef.grpc.lib.domain.UserInfo> getGetUserInfoMethod;
+      com.xaaef.grpc.lib.pb.UserInfo> getGetUserInfoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetUserInfo",
       requestType = com.google.protobuf.StringValue.class,
-      responseType = com.xaaef.grpc.lib.domain.UserInfo.class,
+      responseType = com.xaaef.grpc.lib.pb.UserInfo.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
-      com.xaaef.grpc.lib.domain.UserInfo> getGetUserInfoMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.xaaef.grpc.lib.domain.UserInfo> getGetUserInfoMethod;
+      com.xaaef.grpc.lib.pb.UserInfo> getGetUserInfoMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.xaaef.grpc.lib.pb.UserInfo> getGetUserInfoMethod;
     if ((getGetUserInfoMethod = GreeterGrpc.getGetUserInfoMethod) == null) {
       synchronized (GreeterGrpc.class) {
         if ((getGetUserInfoMethod = GreeterGrpc.getGetUserInfoMethod) == null) {
           GreeterGrpc.getGetUserInfoMethod = getGetUserInfoMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.xaaef.grpc.lib.domain.UserInfo>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.xaaef.grpc.lib.pb.UserInfo>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetUserInfo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.StringValue.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.xaaef.grpc.lib.domain.UserInfo.getDefaultInstance()))
+                  com.xaaef.grpc.lib.pb.UserInfo.getDefaultInstance()))
               .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("GetUserInfo"))
               .build();
         }
@@ -123,15 +123,15 @@ public final class GreeterGrpc {
 
   /**
    */
-  public static abstract class GreeterImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Sends a greeting
      * </pre>
      */
-    public void sayHello(com.xaaef.grpc.lib.greet.HelloRequest request,
-        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.greet.HelloReply> responseObserver) {
+    default void sayHello(com.xaaef.grpc.lib.pb.HelloRequest request,
+        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.pb.HelloReply> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSayHelloMethod(), responseObserver);
     }
 
@@ -140,34 +140,28 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public void getUserInfo(com.google.protobuf.StringValue request,
-        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo> responseObserver) {
+    default void getUserInfo(com.google.protobuf.StringValue request,
+        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.pb.UserInfo> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetUserInfoMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getSayHelloMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.xaaef.grpc.lib.greet.HelloRequest,
-                com.xaaef.grpc.lib.greet.HelloReply>(
-                  this, METHODID_SAY_HELLO)))
-          .addMethod(
-            getGetUserInfoMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.google.protobuf.StringValue,
-                com.xaaef.grpc.lib.domain.UserInfo>(
-                  this, METHODID_GET_USER_INFO)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service Greeter.
    */
-  public static final class GreeterStub extends io.grpc.stub.AbstractAsyncStub<GreeterStub> {
+  public static abstract class GreeterImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return GreeterGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Greeter.
+   */
+  public static final class GreeterStub
+      extends io.grpc.stub.AbstractAsyncStub<GreeterStub> {
     private GreeterStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -184,8 +178,8 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public void sayHello(com.xaaef.grpc.lib.greet.HelloRequest request,
-        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.greet.HelloReply> responseObserver) {
+    public void sayHello(com.xaaef.grpc.lib.pb.HelloRequest request,
+        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.pb.HelloReply> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSayHelloMethod(), getCallOptions()), request, responseObserver);
     }
@@ -196,15 +190,17 @@ public final class GreeterGrpc {
      * </pre>
      */
     public void getUserInfo(com.google.protobuf.StringValue request,
-        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo> responseObserver) {
+        io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.pb.UserInfo> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetUserInfoMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Greeter.
    */
-  public static final class GreeterBlockingStub extends io.grpc.stub.AbstractBlockingStub<GreeterBlockingStub> {
+  public static final class GreeterBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<GreeterBlockingStub> {
     private GreeterBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -221,7 +217,7 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.xaaef.grpc.lib.greet.HelloReply sayHello(com.xaaef.grpc.lib.greet.HelloRequest request) {
+    public com.xaaef.grpc.lib.pb.HelloReply sayHello(com.xaaef.grpc.lib.pb.HelloRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSayHelloMethod(), getCallOptions(), request);
     }
@@ -231,15 +227,17 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.xaaef.grpc.lib.domain.UserInfo getUserInfo(com.google.protobuf.StringValue request) {
+    public com.xaaef.grpc.lib.pb.UserInfo getUserInfo(com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetUserInfoMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Greeter.
    */
-  public static final class GreeterFutureStub extends io.grpc.stub.AbstractFutureStub<GreeterFutureStub> {
+  public static final class GreeterFutureStub
+      extends io.grpc.stub.AbstractFutureStub<GreeterFutureStub> {
     private GreeterFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -256,8 +254,8 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.greet.HelloReply> sayHello(
-        com.xaaef.grpc.lib.greet.HelloRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.pb.HelloReply> sayHello(
+        com.xaaef.grpc.lib.pb.HelloRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSayHelloMethod(), getCallOptions()), request);
     }
@@ -267,7 +265,7 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.domain.UserInfo> getUserInfo(
+    public com.google.common.util.concurrent.ListenableFuture<com.xaaef.grpc.lib.pb.UserInfo> getUserInfo(
         com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetUserInfoMethod(), getCallOptions()), request);
@@ -282,10 +280,10 @@ public final class GreeterGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final GreeterImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(GreeterImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -295,12 +293,12 @@ public final class GreeterGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SAY_HELLO:
-          serviceImpl.sayHello((com.xaaef.grpc.lib.greet.HelloRequest) request,
-              (io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.greet.HelloReply>) responseObserver);
+          serviceImpl.sayHello((com.xaaef.grpc.lib.pb.HelloRequest) request,
+              (io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.pb.HelloReply>) responseObserver);
           break;
         case METHODID_GET_USER_INFO:
           serviceImpl.getUserInfo((com.google.protobuf.StringValue) request,
-              (io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.domain.UserInfo>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.xaaef.grpc.lib.pb.UserInfo>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -318,13 +316,32 @@ public final class GreeterGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSayHelloMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.xaaef.grpc.lib.pb.HelloRequest,
+              com.xaaef.grpc.lib.pb.HelloReply>(
+                service, METHODID_SAY_HELLO)))
+        .addMethod(
+          getGetUserInfoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.StringValue,
+              com.xaaef.grpc.lib.pb.UserInfo>(
+                service, METHODID_GET_USER_INFO)))
+        .build();
+  }
+
   private static abstract class GreeterBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     GreeterBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.xaaef.grpc.lib.greet.Greet.getDescriptor();
+      return com.xaaef.grpc.lib.pb.Greet.getDescriptor();
     }
 
     @java.lang.Override
@@ -341,9 +358,9 @@ public final class GreeterGrpc {
   private static final class GreeterMethodDescriptorSupplier
       extends GreeterBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    GreeterMethodDescriptorSupplier(String methodName) {
+    GreeterMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
