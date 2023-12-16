@@ -111,4 +111,11 @@ public class GrpcClientController {
     }
 
 
+    @GetMapping("pb")
+    public TokenInfo pb() {
+        initToken();
+        return GrpcContext.getTokenInfo();
+    }
+
+
 }

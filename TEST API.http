@@ -19,3 +19,9 @@ GET {{baseUrl}}/getTokenInfo
 Content-Type: application/json
 
 
+
+### pb
+GET {{baseUrl}}/pb
+Content-Type: application/json
+
+

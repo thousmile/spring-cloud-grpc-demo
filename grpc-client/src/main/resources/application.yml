@@ -27,10 +27,8 @@ grpc:
       keep-alive-without-calls: true
     grpc-demo1:
       address: static://localhost:5016
-      negotiation-type: plaintext
-      enable-keep-alive: true
-      keep-alive-without-calls: true
-
+    cshap-grpc:
+      address: static://localhost:5241
 
 
 info:

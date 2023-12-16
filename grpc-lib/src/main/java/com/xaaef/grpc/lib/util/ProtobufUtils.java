@@ -10,6 +10,7 @@ import com.fasterxml.jackson.dataformat.protobuf.schemagen.ProtobufSchemaGenerat
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
 import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,8 @@ public class ProtobufUtils {
 
     private static final JsonFormat.Printer JSON_PRINTER = JsonFormat.printer();
 
+    private static final JsonFormat.Parser JSON_PARSER = JsonFormat.parser();
+
     static {
         MAPPER.registerModules(new Jdk8Module(), new JavaTimeModule())
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true)
@@ -54,6 +57,15 @@ public class ProtobufUtils {
             log.error(e.getMessage());
         }
         return StrUtil.EMPTY;
+    }
+
+
+    public static void jsonMergeMessage(String json, Message.Builder builder) {
+        try {
+            JSON_PARSER.merge(json, builder);
+        } catch (InvalidProtocolBufferException e) {
+            log.error(e.getMessage());
+        }
     }
 
 
