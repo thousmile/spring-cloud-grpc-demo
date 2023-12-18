@@ -32,7 +32,7 @@ public class ProtobufUtils {
 
     private static final ProtobufMapper MAPPER = new ProtobufMapper();
 
-    private static final JsonFormat.Printer JSON_PRINTER = JsonFormat.printer();
+    private static final JsonFormat.Printer JSON_PRINTER = JsonFormat.printer().includingDefaultValueFields();
 
     private static final JsonFormat.Parser JSON_PARSER = JsonFormat.parser();
 
