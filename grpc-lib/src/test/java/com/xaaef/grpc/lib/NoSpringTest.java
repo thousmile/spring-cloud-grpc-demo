@@ -62,6 +62,51 @@ public class NoSpringTest {
 
     }
 
+    static final List<String> arr = List.of("A", "B", "C", "D", "E", "F", "G", "H", "Q", "W", "Y", "U", "I");
+
+    public static TokenInfo.Builder randTokenValue() {
+        return TokenInfo.newBuilder()
+                .setTokenId(IdUtil.objectId())
+                .setTenantId(IdUtil.fastSimpleUUID())
+                .setGrantType("sms")
+                .setLoginClient(
+                        ClientInfo.newBuilder()
+                                .setClientId(RandomUtil.randomString(18))
+                                .setClientType(1)
+                                .setTenantId(RandomUtil.randomString(18))
+                                .setSecret(RandomUtil.randomString(32))
+                                .setName("一二三科技有限公司")
+                                .setLogo(RandomUtil.randomString(36))
+                                .setDescription(RandomUtil.randomString(36))
+                                .setClientType(RandomUtil.randomInt())
+                                .addAllGrantTypes(RandomUtil.randomEleList(arr, 5))
+                                .setDomainName(RandomUtil.randomString(99))
+                                .setScope(RandomUtil.randomString(5))
+                                .build()
+                )
+                .setLoginUser(
+                        UserInfo.newBuilder()
+                                .setUserId(RandomUtil.randomLong())
+                                .setTenantId(RandomUtil.randomString(32))
+                                .setAvatar(RandomUtil.randomString(64))
+                                .setUsername(RandomUtil.randomString(12))
+                                .setMobile(RandomUtil.randomString(11))
+                                .setEmail(RandomUtil.randomString(18))
+                                .setNickname(RandomUtil.randomString(10))
+                                .setPassword(RandomUtil.randomString(64))
+                                .setGender(RandomUtil.randomInt())
+                                .setUserType(RandomUtil.randomInt())
+                                .setDeptId(RandomUtil.randomInt())
+                                .setStatus(RandomUtil.randomInt())
+                                .setAdminFlag(RandomUtil.randomInt())
+                                .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
+                                .build()
+                )
+                .setLoginTime(
+                        Timestamps.fromMillis(System.currentTimeMillis())
+                );
+    }
+
 
     @Test
     public void test2() throws IOException {
@@ -123,47 +168,7 @@ public class NoSpringTest {
     public void test3() throws InvalidProtocolBufferException {
         var arr = List.of("A", "B", "C", "D", "E", "F", "G", "H", "Q", "W", "Y", "U", "I");
 
-        var empl = TokenInfo.newBuilder()
-                .setTokenId(IdUtil.objectId())
-                .setTenantId(IdUtil.fastSimpleUUID())
-                .setGrantType("sms")
-                .setLoginClient(
-                        ClientInfo.newBuilder()
-                                .setClientId(RandomUtil.randomString(18))
-                                .setClientType(1)
-                                .setTenantId(RandomUtil.randomString(18))
-                                .setSecret(RandomUtil.randomString(32))
-                                .setName("一二三科技有限公司")
-                                .setLogo(RandomUtil.randomString(36))
-                                .setDescription(RandomUtil.randomString(36))
-                                .setClientType(RandomUtil.randomInt())
-                                .addAllGrantTypes(RandomUtil.randomEleList(arr, 5))
-                                .setDomainName(RandomUtil.randomString(99))
-                                .setScope(RandomUtil.randomString(5))
-                                .build()
-                )
-                .setLoginUser(
-                        UserInfo.newBuilder()
-                                .setUserId(RandomUtil.randomLong())
-                                .setTenantId(RandomUtil.randomString(32))
-                                .setAvatar(RandomUtil.randomString(64))
-                                .setUsername(RandomUtil.randomString(12))
-                                .setMobile(RandomUtil.randomString(11))
-                                .setEmail(RandomUtil.randomString(18))
-                                .setNickname(RandomUtil.randomString(10))
-                                .setPassword(RandomUtil.randomString(64))
-                                .setGender(RandomUtil.randomInt())
-                                .setUserType(RandomUtil.randomInt())
-                                .setDeptId(RandomUtil.randomInt())
-                                .setStatus(RandomUtil.randomInt())
-                                .setAdminFlag(RandomUtil.randomInt())
-                                .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
-                                .build()
-                )
-                .setLoginTime(
-                        Timestamps.fromMillis(System.currentTimeMillis())
-                )
-                .build();
+        var empl = randTokenValue().build();
 
         long start1 = System.currentTimeMillis();
         var protobufData = empl.toByteArray();
@@ -256,46 +261,14 @@ public class NoSpringTest {
 
     @Test
     public void test5() throws Exception {
-        var t1 = TokenInfo.newBuilder()
-                .setTokenId(IdUtil.objectId())
-                .setTenantId(IdUtil.fastSimpleUUID())
-                .setGrantType("sms")
-                .setLoginClient(
-                        ClientInfo.newBuilder()
-                                .setClientId(RandomUtil.randomString(18))
-                                .setClientType(1)
-                                .setTenantId(RandomUtil.randomString(18))
-                                .setSecret(RandomUtil.randomString(32))
-                                .setName("一二三科技有限公司")
-                                .setLogo(RandomUtil.randomString(36))
-                                .setClientType(RandomUtil.randomInt())
-                                .setDomainName(RandomUtil.randomString(99))
-                                .setScope(RandomUtil.randomString(5))
-                                .build()
-                )
-                .setLoginUser(
-                        UserInfo.newBuilder()
-                                .setUserId(RandomUtil.randomLong())
-                                .setTenantId(RandomUtil.randomString(32))
-                                .setAvatar(RandomUtil.randomString(64))
-                                .setUsername(RandomUtil.randomString(12))
-                                .setMobile(RandomUtil.randomString(11))
-                                .setEmail(RandomUtil.randomString(18))
-                                .setNickname(RandomUtil.randomString(10))
-                                .setPassword(RandomUtil.randomString(64))
-                                .setGender(RandomUtil.randomInt())
-                                .setAdminFlag(RandomUtil.randomInt())
-                                .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
-                                .build()
-                )
-                .build();
-
-        var jsonPrinter1 = JsonFormat.printer();
-        var jsonPrinter2 = JsonFormat.printer().includingDefaultValueFields().printingEnumsAsInts();
-        System.out.println(jsonPrinter1.print(t1));
-        System.out.println();
+        var t1 = randTokenValue().build();
+        var jsonPrinter2 = JsonFormat.printer().includingDefaultValueFields().printingEnumsAsInts()
+                .preservingProtoFieldNames();
+        long start2 = System.currentTimeMillis();
         System.out.println(jsonPrinter2.print(t1));
+        System.out.printf("耗时: %d ms\n", (System.currentTimeMillis() - start2));
         System.out.println();
     }
+
 
 }

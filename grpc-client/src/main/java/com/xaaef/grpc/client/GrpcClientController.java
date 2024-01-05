@@ -103,6 +103,13 @@ public class GrpcClientController {
     }
 
 
+    @GetMapping("getLoginUser")
+    public LoginUser getLoginUser() {
+        initToken();
+        return new LoginUser(10498L, "张三", GrpcContext.getTokenInfo());
+    }
+
+
     @GetMapping("howdy")
     public String howdy(@RequestParam String name) {
         log.info("1.howdy TenantId: \n{}", GrpcContext.getTenantId());

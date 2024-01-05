@@ -26,8 +26,8 @@ public class MessageJsonSerializer extends JsonSerializer<Message> {
     @Override
     public void serialize(Message message, JsonGenerator jsonGenerator,
                           SerializerProvider serializerProvider) throws IOException {
-        var json = ProtobufUtils.toJson(message);
-        jsonGenerator.writeRawValue(json);
+        var jsonValue = ProtobufUtils.toJson(message);
+        jsonGenerator.writeRawValue(jsonValue);
     }
 
 
