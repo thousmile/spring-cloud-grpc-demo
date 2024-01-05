@@ -97,10 +97,9 @@ public class GrpcClientController {
 
 
     @GetMapping("getTokenInfo")
-    public Map<String, Object> getTokenInfo() {
+    public TokenInfo getTokenInfo() {
         initToken();
-        var val1 = GrpcContext.getTokenInfo();
-        return JsonUtils.toMap(ProtobufUtils.toJson(val1), String.class, Object.class);
+        return GrpcContext.getTokenInfo();
     }
 
 
@@ -108,13 +107,6 @@ public class GrpcClientController {
     public String howdy(@RequestParam String name) {
         log.info("1.howdy TenantId: \n{}", GrpcContext.getTenantId());
         return greeterService.sayHello(name);
-    }
-
-
-    @GetMapping("pb")
-    public TokenInfo pb() {
-        initToken();
-        return GrpcContext.getTokenInfo();
     }
 
 
