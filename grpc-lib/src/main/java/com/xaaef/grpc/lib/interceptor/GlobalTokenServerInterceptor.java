@@ -1,17 +1,16 @@
 package com.xaaef.grpc.lib.interceptor;
 
 
-import cn.hutool.core.util.ArrayUtil;
 import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.dto.CustomMetadata;
 import com.xaaef.grpc.lib.pb.TokenInfo;
 import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.MsgpackUtils;
-import com.xaaef.grpc.lib.util.ProtobufUtils;
 import io.grpc.*;
 import io.grpc.protobuf.ProtoUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.interceptor.GrpcGlobalServerInterceptor;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
@@ -45,109 +44,95 @@ public class GlobalTokenServerInterceptor implements ServerInterceptor {
 
 
     @Override
-    public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call,
-                                                                 Metadata headers,
-                                                                 ServerCallHandler<ReqT, RespT> next) {
+    public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> serverCall, Metadata metadata,
+                                                                 ServerCallHandler<ReqT, RespT> serverCallHandler) {
         GrpcContext.reset();
-        String fullMethodName = call.getMethodDescriptor().getFullMethodName();
-        log.debug("grpc request address : {}", fullMethodName);
-
         // 获取 租户ID
-        var tenantId = headers.get(TENANT_ID);
+        var tenantId = metadata.get(TENANT_ID);
         if (!StringUtils.hasText(tenantId)) {
             var status = Status.UNAUTHENTICATED.withDescription("Invalid tenantId");
-            return handleInterceptorException(status, call);
+            return handleException(status, serverCall);
         } else {
             GrpcContext.setTenantId(tenantId);
         }
-
-        log.info("3.Server TenantId: \n{}", GrpcContext.getTenantId());
-
-        // 获取 token 信息 protobuf 格式
-        var tokenInfo = headers.get(TOKEN_INFO);
-        if (Objects.isNull(tokenInfo)) {
-            var status = Status.UNAUTHENTICATED.withDescription("Invalid tokenInfo");
-            return handleInterceptorException(status, call);
-        } else {
-            GrpcContext.setTokenInfo(tokenInfo);
+        // 判断当前请求是否，忽略认证
+        var ignore = GrpcContext.IGNORE_AUTH_METHOD.contains(serverCall.getMethodDescriptor());
+        log.info("address : {}  ignore auth: {} TenantId: {} ", serverCall.getMethodDescriptor().getFullMethodName(), ignore, GrpcContext.getTenantId());
+        if (!ignore) {
+            // 获取 token 信息 protobuf 格式
+            var tokenInfo = metadata.get(TOKEN_INFO);
+            if (Objects.isNull(tokenInfo)) {
+                var status = Status.UNAUTHENTICATED.withDescription("Invalid tokenInfo");
+                return handleException(status, serverCall);
+            } else {
+                GrpcContext.setTokenInfo(tokenInfo);
+            }
+            // 获取 token 信息 二进制 格式
+            var bytes = metadata.get(CUSTOM_BINARY);
+            if (ArrayUtils.isNotEmpty(bytes)) {
+                var customMetadata = MsgpackUtils.toPojo(bytes, CustomMetadata.class);
+                log.debug("Custom Metadata: \n{}", JsonUtils.toFormatJson(customMetadata));
+            }
         }
+        var delegate = serverCallHandler.startCall(serverCall, metadata);
+        return new ForwardingServerCallListener.SimpleForwardingServerCallListener<>(delegate) {
 
-        log.debug("TokenInfo Protobuf : \n{}", GrpcContext.getTokenInfo());
+            /**
+             * 贯穿整个请求的整个生命周期。
+             */
+            @Override
+            public void onHalfClose() {
+                log.info("start interceptor onHalfClose : .....");
+                super.onHalfClose();
+                log.info("end interceptor onHalfClose : .....");
+            }
 
-        String print = ProtobufUtils.toJson(GrpcContext.getTokenInfo());
-        log.debug("TokenInfo Json : \n{}", print);
-
-        // 获取 token 信息 二进制 格式
-        var bytes = headers.get(CUSTOM_BINARY);
-        if (ArrayUtil.isNotEmpty(bytes)) {
-            var customMetadata = MsgpackUtils.toPojo(bytes, CustomMetadata.class);
-            log.debug("Custom Metadata: \n{}", JsonUtils.toFormatJson(customMetadata));
-        }
-
-
-        try {
-            var delegate = next.startCall(call, headers);
-
-            return new ForwardingServerCallListener.SimpleForwardingServerCallListener<ReqT>(delegate) {
-
-                @Override
-                public void onMessage(ReqT message) {
-                    try {
-                        super.onMessage(message); // Here onNext is called (in case of client streams)
-                    } catch (Exception ex) {
-                        handleEndpointException(ex, call);
-                    }
-                }
-
-                @Override
-                public void onHalfClose() {
-                    try {
-                        super.onHalfClose();
-                    } catch (Exception ex) {
-                        handleEndpointException(ex, call);
-                    }
-                }
-
-                @Override
-                public void onComplete() {
-                    super.onComplete();
-                    // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
-                    GrpcContext.reset();
-                }
-
-            };
-        } catch (Exception ex) {
-            return handleInterceptorException(
-                    Status.INTERNAL.withDescription(ex.getMessage()),
-                    call
-            );
-        }
-
-    }
-
-
-    private <ReqT, RespT> void handleEndpointException(Exception t, ServerCall<ReqT, RespT> serverCall) {
-        serverCall.close(Status.INTERNAL
-                .withCause(t)
-                .withDescription(t.getMessage()), new Metadata());
-        // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
-        GrpcContext.reset();
-    }
-
-
-    private <ReqT, RespT> ServerCall.Listener<ReqT> handleInterceptorException(Status status, ServerCall<ReqT, RespT> serverCall) {
-        serverCall.close(status, new Metadata());
-        return new ServerCall.Listener<ReqT>() {
-
+            /**
+             * 代表本次请求正常结束
+             */
             @Override
             public void onComplete() {
-                // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
-                GrpcContext.reset();
-                super.onComplete();
+                try {
+                    super.onComplete();
+                } finally {
+                    // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
+                    GrpcContext.reset();
+                    log.info("server interceptor onComplete : .....");
+                }
+            }
+
+            /**
+             * 代表本次请求被取消掉，通常发生在服务端执行出现异常的情况会被调用。
+             * 例如请求超时，会执行到这个方法。
+             */
+            @Override
+            public void onCancel() {
+                try {
+                    super.onCancel();
+                } finally {
+                    GrpcContext.reset();
+                    log.info("server interceptor onCancel : .....");
+                }
             }
 
         };
     }
+
+
+    private <ReqT, RespT> ServerCall.Listener<ReqT> handleException(Status status, ServerCall<ReqT, RespT> serverCall) {
+        serverCall.close(status, new Metadata());
+        return new ServerCall.Listener<>() {
+
+            @Override
+            public void onComplete() {
+                super.onComplete();
+                // 清除 传递到 RPC 线程中 ThreadLocal 的数据。 防止其他请求复用此线程的数据
+                GrpcContext.reset();
+            }
+
+        };
+    }
+
 
 }
 

@@ -71,6 +71,7 @@ public class GreeterGrpcImpl extends GreeterGrpc.GreeterImplBase {
                     .setAdminFlag(RandomUtil.randomInt())
                     .setExpired(Timestamps.fromMillis(System.currentTimeMillis()))
                     .build();
+            log.info("getUserInfo: {}", request.getValue());
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         } else {

@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static com.xaaef.grpc.lib.interceptor.GlobalTokenServerInterceptor.*;
 
@@ -41,29 +42,26 @@ public class GlobalTokenClientInterceptor implements ClientInterceptor {
     public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor,
                                                                CallOptions callOptions,
                                                                Channel channel) {
-        long start = System.currentTimeMillis();
+        var start = new AtomicLong(System.currentTimeMillis());
         var delegate = channel.newCall(methodDescriptor, callOptions);
         return new ForwardingClientCall.SimpleForwardingClientCall<>(delegate) {
 
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
-                var tenantId = GrpcContext.getTenantId();
-                var tokenInfo = GrpcContext.getTokenInfo();
-                log.info("2.Client TenantId: \n{}", tenantId);
-                if (StringUtils.hasText(tenantId)) {
-                    // 添加 租户ID string 类型
-                    headers.put(TENANT_ID, tenantId);
+                // 添加 租户ID string 类型
+                if (StringUtils.hasText(GrpcContext.getTenantId())) {
+                    headers.put(TENANT_ID, GrpcContext.getTenantId());
                 }
-                if (Objects.nonNull(tokenInfo)) {
-                    // 添加 token 信息 protobuf 格式
-                    headers.put(TOKEN_INFO, tokenInfo);
+                // 添加 token 信息 protobuf 格式
+                if (Objects.nonNull(GrpcContext.getTokenInfo())) {
+                    headers.put(TOKEN_INFO, GrpcContext.getTokenInfo());
                 }
                 // 添加 自定义 二进制 格式
                 headers.put(CUSTOM_BINARY, randomBytes());
                 super.start(new ForwardingClientCallListener.SimpleForwardingClientCallListener<RespT>(responseListener) {
                     @Override
                     public void onClose(Status status, Metadata trailers) {
-                        long time = System.currentTimeMillis() - start;
+                        long time = System.currentTimeMillis() - start.get();
                         log.info("[grpc] {} time consuming: {} ms", methodDescriptor.getFullMethodName(), time);
                         super.onClose(status, trailers);
                     }

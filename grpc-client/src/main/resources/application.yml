@@ -28,7 +28,7 @@ grpc:
     grpc-demo1:
       address: static://localhost:5016
     cshap-grpc:
-      address: static://localhost:5241
+      address: static://localhost:18011
 
 
 info:
