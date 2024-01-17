@@ -22,7 +22,7 @@ public class GrpcClientController {
     private final RpcGreeterService greeterService;
 
     @GetMapping("hello")
-    public Object hello(@RequestParam String name) {
+    public Object hello(@RequestParam("name") String name) {
         GrpcContext.randomTokenInfo();
         log.info("1.hello TenantId: \n{}", GrpcContext.getTenantId());
         var result = greeterService.sayHello(name);
@@ -32,7 +32,7 @@ public class GrpcClientController {
 
 
     @GetMapping("getUserInfo")
-    public Map<String, Object> getUserInfo(@RequestParam String name) {
+    public Map<String, Object> getUserInfo(@RequestParam("name") String name) {
         GrpcContext.randomTokenInfo();
         var val1 = greeterService.getUserInfo(name);
         return JsonUtils.toMap(ProtobufUtils.toJson(val1), String.class, Object.class);

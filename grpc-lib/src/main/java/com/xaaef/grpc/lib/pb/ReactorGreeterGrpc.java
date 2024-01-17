@@ -2,9 +2,6 @@ package com.xaaef.grpc.lib.pb;
 
 import static com.xaaef.grpc.lib.pb.GreeterGrpc.getServiceDescriptor;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
 
 
 @javax.annotation.Generated(

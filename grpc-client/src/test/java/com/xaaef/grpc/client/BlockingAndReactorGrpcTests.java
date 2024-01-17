@@ -3,10 +3,8 @@ package com.xaaef.grpc.client;
 
 import cn.hutool.core.util.IdUtil;
 import com.google.protobuf.StringValue;
-import com.google.protobuf.Timestamp;
 import com.xaaef.grpc.lib.context.GrpcContext;
 import com.xaaef.grpc.lib.pb.*;
-import com.xaaef.grpc.lib.util.JsonUtils;
 import com.xaaef.grpc.lib.util.ProtobufUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
@@ -16,6 +14,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
@@ -48,11 +47,10 @@ public class BlockingAndReactorGrpcTests {
     @Test
     public void test2() throws Exception {
         GrpcContext.setTenantId(IdUtil.simpleUUID());
-        var latch = new CountDownLatch(1);
+        var latch = new CountDownLatch(10);
         long count = latch.getCount();
-        var request = StringValue.of("tom");
         for (int i = 0; i < count; i++) {
-            reactorGreeterStub.getUserInfo(Mono.just(request))
+            reactorGreeterStub.getUserInfo(Mono.just(StringValue.of("tom " + i)))
                     .timeout(Duration.ofSeconds(1))
                     .doOnError(err -> log.error(err.getMessage()))
                     .onErrorReturn(UserInfo.getDefaultInstance())
@@ -68,19 +66,23 @@ public class BlockingAndReactorGrpcTests {
 
     @Test
     public void test3() throws Exception {
-        GrpcContext.setTenantId(IdUtil.simpleUUID());
-        var latch = new CountDownLatch(1);
-        var request = HelloRequest.newBuilder().setName("tom").build();
-        reactorGreeterStub.sayHello(Mono.just(request))
-                .timeout(Duration.ofSeconds(1))
-                .map(HelloReply::getMessage)
-                .doOnError(err -> log.error(err.getMessage()))
-                .onErrorReturn("熔断.....")
-                .subscribe(
-                        log::info,
-                        err -> log.error(err.getMessage()),
-                        latch::countDown
-                );
+        GrpcContext.randomTokenInfo();
+        var latch = new CountDownLatch(10);
+        long count = latch.getCount();
+        for (int i = 0; i < count; i++) {
+            TimeUnit.SECONDS.sleep(1);
+            var request = HelloRequest.newBuilder().setName("tom" + i).build();
+            reactorGreeterStub.sayHello(Mono.just(request))
+                    .timeout(Duration.ofSeconds(1))
+                    .map(HelloReply::getMessage)
+                    .doOnError(err -> log.error(err.getMessage()))
+                    .onErrorReturn("熔断.....")
+                    .subscribe(
+                            log::info,
+                            err -> log.error(err.getMessage()),
+                            latch::countDown
+                    );
+        }
         latch.await();
     }
 

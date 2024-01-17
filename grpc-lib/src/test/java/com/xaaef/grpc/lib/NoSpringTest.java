@@ -10,7 +10,6 @@ import com.xaaef.grpc.lib.pb.ClientInfo;
 import com.xaaef.grpc.lib.pb.TokenInfo;
 import com.xaaef.grpc.lib.pb.UserInfo;
 import com.xaaef.grpc.lib.util.JsonUtils;
-import com.xaaef.grpc.lib.util.ProtobufUtils;
 import lombok.*;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +17,8 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
 
 import static com.xaaef.grpc.lib.util.ProtobufUtils.toBytes;
 import static com.xaaef.grpc.lib.util.ProtobufUtils.toPojo;
@@ -268,6 +269,24 @@ public class NoSpringTest {
         System.out.println(jsonPrinter2.print(t1));
         System.out.printf("耗时: %d ms\n", (System.currentTimeMillis() - start2));
         System.out.println();
+    }
+
+
+    @Test
+    public void test6() throws Exception {
+        var es = Executors.newVirtualThreadPerTaskExecutor();
+        var latch = new CountDownLatch(1000);
+        long count = latch.getCount();
+        for (int i = 0; i < count; i++) {
+            int finalI = i;
+            es.submit(() -> {
+                var thread = Thread.currentThread();
+                long id = thread.threadId();
+                System.out.printf("Thread: %s  Virtual Thread : %s ->  i : %d\n", id, thread.isVirtual(), finalI);
+                latch.countDown();
+            });
+        }
+        latch.await();
     }
 
 
