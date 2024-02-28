@@ -3,42 +3,85 @@ resilience4j.circuitbreaker:
   configs:
     default:
       registerHealthIndicator: true
-      slidingWindowSize: 10
+
+      # 断路器计算失败率或慢调⽤率之前所需的最⼩调⽤数（每个滑动窗⼝周期）。
+      # 例如，如果minimumNumberOfCalls为10，则必须⾄少记录10个调⽤，然后才能计算失败率。
+      # 如果只记录了9次调⽤，即使所有9次调⽤都失败，断路器也不会开启。
       minimumNumberOfCalls: 5
+
+      # 配置滑动窗⼝的类型，当断路器关闭时，将调⽤的结果记录在滑动窗⼝中。
+      # 滑动窗⼝的类型可以是 COUNT_BASED 或 TIME_BASED。
+      # 如果滑动窗⼝类型是 COUNT_BASED 将会统计记录最近 slidingWindowSize 次调⽤的结果。
+      # 如果是TIME_BASED，将会统计记录最近 slidingWindowSize 秒的调⽤结果。
       slidingWindowType: TIME_BASED
-      permittedNumberOfCallsInHalfOpenState: 3
+      # 滑动窗⼝的⼤⼩。
+      slidingWindowSize: 10
+
+      # 断路器在半开状态下的最⻓等待时间，超过该配置值的话，断路器会从半开状态恢复为开启状态。
+      # 配置是0时表示断路器会⼀直处于半开状态，直到所有允许通过的访问结束。
+      maxWaitDurationInHalfOpenState: 0
+
+      # 断路器在半开状态下允许通过的调⽤次数。
+      permittedNumberOfCallsInHalfOpenState: 10
+
+      # 如果设置为 true，则意味着断路器将⾃动从开启状态过渡到半开状态，并且不需要调⽤来触发转换。
+      # 创建⼀个线程来监视断路器的所有实例，以便在 wait-duration-in-open-state 之后将它们转换为半开状态。
+      # 但是，如果设置为false，则只有在发出调⽤时才会转换到半开，即使 在 wait-duration-in-open-state 之后也是如此。
+      # 这⾥的优点是没有线程监视所有断路器的状态。
       automaticTransitionFromOpenToHalfOpenEnabled: true
-      waitDurationInOpenState: 2s
-      slow-call-duration-threshold: 2s
+
+      # 断路器从开启过渡到半开应等待的时间。
+      waitDurationInOpenState: 30s
+
+      # 以百分⽐的⽅式配置，断路器把调⽤时间⼤于 slow-call-duration-threshold 的调⽤视为慢调⽤，
+      # 当慢调⽤⽐例⼤于等于阈值时，断路器开启，并进⾏服务降级。
+      slowCallRateThreshold: 30
+      # 调⽤时间的阈值，⾼于该阈值的呼叫视为慢调⽤，并增加慢调⽤⽐例。
+      slowCallDurationThreshold: 1s
+
+      # 以百分⽐配置失败率阈值。当失败率等于或⼤于阈值时，
+      # 断路器状态并关闭变为开启，并进⾏服务降级。
       failureRateThreshold: 30
+
       eventConsumerBufferSize: 10
+
+      # 记录为失败并因此增加失败率的异常列表。除⾮通过ignoreExceptions显式忽略，
+      # 否则与列表中某个匹配或继承的异常都将被视为失败。如果指定异常列表，
+      # 则所有其他异常均视为成功，除⾮它们被 ignoreExceptions 显式忽略。
       recordExceptions:
         - org.springframework.web.client.HttpServerErrorException
+        - java.util.concurrent.TimeoutException
         - io.grpc.StatusRuntimeException
         - java.lang.RuntimeException
         - java.io.IOException
+
 
 
 ## 超时配置
 resilience4j.timelimiter:
   configs:
     default:
-      timeout-duration: 1s
-      cancel-running-future: true
+      timeoutDuration: 2s
+      cancelRunningFuture: true
 
 
 ## 重试配置
 resilience4j.retry:
   configs:
     default:
-      max-attempts: 2
-      waitDuration: 100
+      maxAttempts: 2
+      waitDuration: 2s
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      ignoreExceptions:
+        #- io.github.robwin.exception.BusinessException
       retryExceptions:
         - org.springframework.web.client.HttpServerErrorException
+        - java.util.concurrent.TimeoutException
         - io.grpc.StatusRuntimeException
         - java.lang.RuntimeException
+        - java.lang.RuntimeException
         - java.io.IOException
-
 
 
 ## 限流配置

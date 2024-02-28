@@ -27,17 +27,17 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <os.plugin.version>1.7.1</os.plugin.version>
-        <grpc.version>1.61.0</grpc.version>
+        <grpc.version>1.62.2</grpc.version>
         <reactive.grpc.version>1.2.4</reactive.grpc.version>
-        <protobuf.version>3.25.2</protobuf.version>
+        <protobuf.version>3.25.3</protobuf.version>
         <protobuf.plugin.version>0.6.1</protobuf.plugin.version>
         <javax-ann-api.version>1.3.2</javax-ann-api.version>
 
-        <msgpack.version>0.9.7</msgpack.version>
-        <hutool.version>5.8.25</hutool.version>
+        <msgpack.version>0.9.8</msgpack.version>
+        <hutool.version>5.8.26</hutool.version>
 
-        <devh-grpc.version>2.15.0.RELEASE</devh-grpc.version>
-        <spring-boot.version>3.2.1</spring-boot.version>
+        <devh-grpc.version>3.0.0.RELEASE</devh-grpc.version>
+        <spring-boot.version>3.2.3</spring-boot.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
 
@@ -67,13 +67,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
 

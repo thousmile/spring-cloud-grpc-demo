@@ -22,6 +22,9 @@ public class RpcConfigServiceImpl implements RpcConfigService {
     @GrpcClient("grpc-demo1")
     private ConfigGrpc.ConfigBlockingStub blockingStub;
 
+    @GrpcClient("grpc-demo1")
+    private ConfigGrpc.ConfigFutureStub futureStub;
+
 
     @Override
     public String getStringValue(String key) {
@@ -43,9 +46,10 @@ public class RpcConfigServiceImpl implements RpcConfigService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        var request = StringValue.of(key);
         return CompletableFuture
                 .completedFuture(
-                        blockingStub.getNumberValue(StringValue.of(key)).getValue()
+                        blockingStub.getNumberValue(request).getValue()
                 );
     }
 

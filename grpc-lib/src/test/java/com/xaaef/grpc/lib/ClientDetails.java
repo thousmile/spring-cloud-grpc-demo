@@ -1,6 +1,7 @@
 package com.xaaef.grpc.lib;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
 public class ClientDetails implements Serializable {
 
     /**

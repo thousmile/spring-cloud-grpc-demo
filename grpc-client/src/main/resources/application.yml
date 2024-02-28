@@ -6,17 +6,10 @@ spring:
     name: grpc-client
   profiles:
     include: resilience4j
+    active: dev
   threads:
     virtual:
       enabled: true
-
-
-  cloud:
-    consul:
-      host: ${REGISTER_SERVER_HOST:192.168.0.188}
-      port: ${REGISTER_SERVER_PORT:8500}
-      discovery:
-        prefer-ip-address: true
 
 
 # Grpc配置
@@ -28,8 +21,6 @@ grpc:
       negotiation-type: plaintext
       enable-keep-alive: true
       keep-alive-without-calls: true
-    grpc-demo1:
-      address: static://localhost:5016
     cshap-grpc:
       address: static://localhost:18011
 
@@ -39,6 +30,7 @@ info:
     name: ${spring.application.name}
     description: ${spring.application.name}
     version: 0.0.1
+
 
 management:
   endpoints:

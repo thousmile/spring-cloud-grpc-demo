@@ -4,8 +4,10 @@ import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
+import com.fasterxml.jackson.dataformat.protobuf.schema.ProtobufSchema;
 import com.fasterxml.jackson.dataformat.protobuf.schemagen.ProtobufSchemaGenerator;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -14,6 +16,9 @@ import com.google.protobuf.Message;
 import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -30,13 +35,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProtobufUtils {
 
-    private static final ProtobufMapper MAPPER = new ProtobufMapper();
-
     private static final JsonFormat.Printer JSON_PRINTER = JsonFormat.printer()
             .includingDefaultValueFields()
             .printingEnumsAsInts();
 
     private static final JsonFormat.Parser JSON_PARSER = JsonFormat.parser();
+
+    private static final ProtobufMapper MAPPER = new ProtobufMapper();
 
     static {
         MAPPER.registerModules(new Jdk8Module(), new JavaTimeModule())
@@ -76,9 +81,7 @@ public class ProtobufUtils {
      */
     public static byte[] toBytes(Object data) {
         try {
-            var gen = new ProtobufSchemaGenerator();
-            MAPPER.acceptJsonFormatVisitor(data.getClass(), gen);
-            var schema = gen.getGeneratedSchema();
+            var schema = getProtobufSchema(data.getClass());
             return MAPPER.writer(schema).writeValueAsBytes(data);
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
@@ -92,14 +95,29 @@ public class ProtobufUtils {
      */
     public static <T> T toPojo(byte[] data, Class<T> beanType) {
         try {
-            var gen = new ProtobufSchemaGenerator();
-            MAPPER.acceptJsonFormatVisitor(beanType, gen);
-            var schema = gen.getGeneratedSchema();
+            var schema = getProtobufSchema(beanType);
             return MAPPER.readerFor(beanType).with(schema).readValue(data);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
         return null;
+    }
+
+
+    private static final Map<String, ProtobufSchema> SCHEMA_MAP = new ConcurrentHashMap<>();
+
+
+    public static <T> ProtobufSchema getProtobufSchema(Class<T> beanType) throws JsonMappingException {
+        var classStr = beanType.toString();
+        return SCHEMA_MAP.computeIfAbsent(classStr, (k) -> {
+            try {
+                var gen = new ProtobufSchemaGenerator();
+                MAPPER.acceptJsonFormatVisitor(beanType, gen);
+                return gen.getGeneratedSchema();
+            } catch (JsonMappingException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 
