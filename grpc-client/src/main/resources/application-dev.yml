@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            grpc-server:
+              - instanceId: grpc-server-${random.int}
+                serviceId: grpc-server
+                host: localhost
+                port: 18010
+                metadata:
+                  gRPC_port: 18011
+
